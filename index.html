@@ -386,7 +386,16 @@ function makeCat(box){box.innerHTML='';const im={};const sh=document.createEleme
  c.show('base');return c}
 const CATMAP={base:'base',smile:'happy',nod:'happy',pleased:'pleased',surprised:'surprised',think:'think',side:'think',sad:'sad',worry:'sad',stone:'stone',wave:'wave'};
 let mCat=null,bCat=null,catIdle=Date.now();
-function mascot(ex){if(!mCat)mCat=makeCat($('mascot'));mCat.show(CATMAP[ex]||'base')}
+function mascot(ex){if(!mCat)mCat=makeCat($('mascot'));const k=CATMAP[ex]||'base';if(k===mCat.cur||!mCat.im[k])return mCat.show(k);
+ // 표정 그림마다 몸 모양이 달라서, 살짝 웅크렸다 튀어오르는 사이에 바꾼다(즉시 교체보다 자연스럽게)
+ const my=mascot.seq=(mascot.seq||0)+1,b=mCat.body;if(!b.animate||matchMedia('(prefers-reduced-motion: reduce)').matches)return mCat.show(k);
+ b.animate([{transform:'scale(1,1)'},{transform:'scale(1.05,.9)',offset:.35},{transform:'scale(.97,1.05)',offset:.65},{transform:'scale(1,1)'}],{duration:340,easing:'ease-out'});
+ setTimeout(()=>{if(my===mascot.seq)mCat.show(k)},115)}
+// 오목할 때 나비는 게임판 위쪽 테두리에 앉는다(판을 가리지 않게)
+function mPlace(){const m=$('mascot'),gm=$('game'),app=$('app');if(!m||!gm)return;const H=app.clientHeight,top=H-gm.offsetHeight;
+ const hb=document.querySelector('header')?document.querySelector('header').getBoundingClientRect().bottom-app.getBoundingClientRect().top:80;
+ const h=Math.max(64,Math.min(140,top-hb-2)),w=h*710/574,fb=A.k_fbase||.95;
+ [['height',h+'px'],['width',w+'px'],['margin-left',-w/2+'px'],['top',(top-h*fb+4)+'px']].forEach(([p,v])=>m.style.setProperty(p,v,'important'))}
 // walker on the desk
 const WK={x:0,y:0,on:false,busy:false,started:false,t0:0};
 function wGeo(){const P=$('pub').getBoundingClientRect(),B=$('boxC').getBoundingClientRect();const W=Math.min(P.width,(window.visualViewport?visualViewport.width:innerWidth)-Math.max(0,P.left)),cw=$('bcat').offsetWidth,ch=cw*A.k_dim[1]/A.k_dim[0];
@@ -465,9 +474,9 @@ async function gTap(e){if(!G||G.over||gBusy)return;const c=$('gBoard'),r=c.getBo
  if(pub)mascot('stone');await sleep(R(450,900));const[ax,ay]=gAI();const hw=gPlace(ax,ay,2);gDraw();gBusy=false;
  if(hw){S.omok.l++;save();gScore();gLine(gS('awin'),'smile');return}
  if(gThreat(2))gLine(gS('attack'),'pleased');else{if(!pub)fade(mood);else mascot('base');if(Math.random()<.3)gLine(gS('idle'))}}
-function gOpen(){if(opening)return;if(pub){mascot('base')}$('app').classList.add('gaming');$('game').classList.add('open');gLvR();requestAnimationFrame(()=>{if(!G||G.over)gNew();else{gDraw();gScore()}})}
+function gOpen(){if(opening)return;if(pub){mascot('base');mPlace()}$('app').classList.add('gaming');$('game').classList.add('open');gLvR();requestAnimationFrame(()=>{if(!G||G.over)gNew();else{gDraw();gScore()}})}
 function gClose(){$('app').classList.remove('gaming');$('game').classList.remove('open');if(!pub)setMood(idle())}
-$('omokbtn').onclick=gOpen;$('gClose').onclick=gClose;$('gNew').onclick=gNew;$('gBoard').addEventListener('click',gTap);window.addEventListener('resize',()=>{if($('game').classList.contains('open'))gDraw()});
+$('omokbtn').onclick=gOpen;$('gClose').onclick=gClose;$('gNew').onclick=gNew;$('gBoard').addEventListener('click',gTap);window.addEventListener('resize',()=>{if($('game').classList.contains('open')){gDraw();if(pub)mPlace()}});
 // ---------- state ----------
 let S={name:'',todos:[],memory:[],history:[],routines:[],water:0,repText:'',lastWater:Date.now(),speed:32,bfly:true,key:'',model:'gemini-2.5-flash',srv:'',uid:'',sec:'',wFrom:'09:00',wTo:'22:00',fired:{}},ref=null,saveT;
 function save(){clearTimeout(saveT);saveT=setTimeout(async()=>{const d=JSON.parse(JSON.stringify(S));try{localStorage.setItem('haru2',JSON.stringify(d))}catch(e){}pushSync();},500)}
