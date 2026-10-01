@@ -5,7 +5,7 @@
 
 ## 배포
 - 앱: https://vecar0.github.io/haru/ — 이 저장소(GitHub Pages). 파일: `index.html`, `sw.js`, `manifest.json`, `icon-180.png`, `icon-512.png`, `assets/`(그림)
-- **배포할 때마다 `sw.js`의 캐시 버전 `haru-vNN`을 1 올린다** (현재 v48). 안 올리면 폰에 예전 버전이 남는다.
+- **배포할 때마다 `sw.js`의 캐시 버전 `haru-vNN`을 1 올린다** (현재 v49). 안 올리면 폰에 예전 버전이 남는다.
 - 사용자는 아이폰 홈 화면에 설치해서 쓴다. 업데이트 확인은 "앱 완전 종료 후 다시 열기". 아이콘을 바꾸면 홈 화면에서 지우고 Safari에서 다시 "홈 화면에 추가"해야 한다.
 - 알림 서버: Cloudflare Worker `haru-push` (https://haru-push.vecar0473.workers.dev), 코드 `worker.js`. KV 바인딩 `HARU`, 크론 `* * * * *` 필수. 엔드포인트 `/vapid` `/sync` `/test` `/status`. 이 저장소에서 자동 배포되지 않으므로 바꾸면 사용자가 Cloudflare 대시보드에 직접 붙여넣어야 한다고 안내한다.
 - AI: Gemini API (키는 앱 설정에 저장, 폰에만 보관). 대화 `gemini-2.5-flash-lite` 스트리밍, 음성 `gemini-2.5-flash-preview-tts`.
