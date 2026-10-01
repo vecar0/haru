@@ -3,19 +3,17 @@
 const GAMES=[
  {id:'chess',name:'체스',sub:'왕을 잡으면 승리',duo:true,icon:'<path d="M9 20h6M8.5 17h7l-1-4.5 1.5-2-2-4-3-.5-2.5 2.5 1.5 1.5-1 1-1.5-.5z"/>'},
  {id:'omok',name:'오목',sub:'다섯 줄을 먼저',duo:true,icon:'<circle cx="8.5" cy="12" r="4.5"/><circle cx="15.5" cy="12" r="4.5"/>'},
- {id:'reversi',name:'리버시',sub:'더 많이 뒤집기',duo:true,icon:'<circle cx="12" cy="12" r="7"/><path d="M12 5a7 7 0 0 0 0 14z" fill="url(#pg)"/>'},
- {id:'four',name:'사목',sub:'네 줄을 먼저',duo:true,icon:'<rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><circle cx="15" cy="10" r="1.6"/><circle cx="9" cy="15" r="1.6"/><circle cx="15" cy="15" r="1.6"/>'},
- {id:'rps',name:'가위바위보',sub:'세 판 먼저 이기기',trio:true,icon:'<path d="M7 13V7.5a1.5 1.5 0 0 1 3 0V12M10 11V6a1.5 1.5 0 0 1 3 0v5M13 11V7a1.5 1.5 0 0 1 3 0v6c0 3.5-2 6-5 6s-4.5-1.5-5-4l-1-3a1.4 1.4 0 0 1 2.4-1.3L7 13"/>'},
- {id:'updown',name:'업다운',sub:'1~100 숫자 맞히기',trio:true,icon:'<path d="M8 10l4-4 4 4M8 14l4 4 4-4"/>'},
- {id:'dice',name:'주사위',sub:'큰 수가 이겨요',trio:true,icon:'<rect x="5" y="5" width="14" height="14" rx="3"/><circle cx="9" cy="9" r="1.1"/><circle cx="15" cy="15" r="1.1"/><circle cx="12" cy="12" r="1.1"/>'}];
+ {id:'blackjack',name:'블랙잭',sub:'21에 가깝게',duo:true,trio:true,bet:true,icon:'<rect x="4.5" y="5" width="10" height="14" rx="2"/><path d="M14.5 7.5l4.2 1.2-3.3 11.4-5.2-1.5"/>'},
+ {id:'holdem',name:'홀덤',sub:'텍사스 홀덤 포커',duo:true,trio:true,bet:true,icon:'<path d="M12 4.5c3 3.5 6.5 5.3 6.5 8.4a3.3 3.3 0 0 1-5.6 2.3L13.6 19h-3.2l.7-3.8a3.3 3.3 0 0 1-5.6-2.3c0-3.1 3.5-4.9 6.5-8.4z"/>'},
+ {id:'chinchiro',name:'친치로',sub:'주사위 세 개 족보',duo:true,trio:true,bet:true,icon:'<rect x="3.5" y="9" width="9" height="9" rx="2"/><rect x="11.5" y="4.5" width="9" height="9" rx="2"/><circle cx="8" cy="13.5" r=".9"/><circle cx="14" cy="7" r=".9"/><circle cx="18" cy="11" r=".9"/>'}];
 const NAME={haru:'하루',navi:'나비'};
 // 대사: 하루는 쿨하고 짧게, 나비는 귀엽게
 const L={
  haru:{start:['…한 판 해요. 봐주진 않을 거예요.','먼저 두세요.','좋아요. 시작해요.'],think:['음…','…','그럼 저는…','여기요.'],uwin:['…졌어요. 조금 분하네요.','잘하시네요. 다음엔 안 져요.'],awin:['제가 이겼네요. …다시 해요?','이번엔 제 차례였어요.'],draw:['무승부네요. …나쁘지 않았어요.'],threat:['…거기, 알고 있어요.','위험했네요.'],attack:['…이제 막으셔야 할걸요.','여기, 보이세요?'],idle:['천천히 두세요.','…흥미롭네요.','당신 차례예요.'],check:['체크예요.','…왕, 조심하세요.'],pass:['둘 곳이 없네요. 한 번 쉴게요.'],upass:['둘 곳이 없으시네요. 제가 한 번 더 둘게요.'],
-  rwin:['…이번엔 제가.','제가 가져갈게요.'],rlose:['…다음엔 안 져요.','흠.'],rdraw:['다시요.','…비겼네요.'],gwin:['제가 이겼어요. …재밌었어요.'],glose:['…축하해요. 진심이에요.']},
+  deal:['카드 나눠드릴게요.','…자, 받으세요.'],bust:['…넘으셨네요.'],pwin:['이번 판은 제 거예요.','…가져갈게요.'],plose:['…가져가세요. 다음엔 안 줘요.','운이 좋으시네요.'],push:['비겼네요.'],raise:['올릴게요.','…조금 더요.'],fold:['이번엔 접을게요.'],ccgo:['먼저 굴리세요. 세 번까지예요.'],ccbig:['…좋은 패예요.'],ccbad:['…1-2-3. 운이 없네요.']},
  navi:{start:['한 판 해요! 먼저 두세요~','놀자! 저부터… 아니 먼저 두세요!'],think:['음…','어디 둘까~','여기!'],uwin:['으앙, 졌어요… 한 판 더!','우와, 잘하시네요!'],awin:['이겼다! 헤헤, 다시 해요?','제가 이겼어요~!'],draw:['비겼어요! 사이좋게~'],threat:['앗, 거긴 막아야 해요!','깜짝이야!'],attack:['이제 막아보세요~','후후, 보이세요?'],idle:['천천히 두세요~','두근두근…','차례예요!'],check:['체크! 헤헤','왕 조심~'],pass:['둘 데가 없어요… 패스!'],upass:['어? 둘 데가 없네요. 제가 또 둘게요~'],
-  rwin:['야호!','헤헤, 내가 이겼다~'],rlose:['힝…','다음엔 이길 거예요!'],rdraw:['또 비겼다!','한 번 더~'],gwin:['내가 1등이다~!'],glose:['으앙, 졌다… 축하해요!']}};
-const EMO={start:'smile',think:'think',uwin:'surprised',awin:'smile',draw:'nod',threat:'surprised',attack:'pleased',check:'pleased',rwin:'smile',rlose:'sad',rdraw:'nod',gwin:'pleased',glose:'surprised'};
+  deal:['카드 나눠요~'],bust:['앗, 넘었다!'],pwin:['헤헤, 내가 가져갈게요~'],plose:['힝… 가져가요.'],push:['비겼다~'],raise:['올려요! 후후','더 걸게요~'],fold:['이건 포기~'],ccgo:['먼저 굴려요! 세 번까지~'],ccbig:['우와 대박!'],ccbad:['으앙 1-2-3…']}};
+const EMO={deal:'base',bust:'surprised',pwin:'smile',plose:'surprised',push:'nod',raise:'pleased',fold:'side',ccbig:'surprised',ccbad:'sad',start:'smile',think:'think',uwin:'surprised',awin:'smile',draw:'nod',threat:'surprised',attack:'pleased',check:'pleased',rwin:'smile',rlose:'sad',rdraw:'nod',gwin:'pleased',glose:'surprised'};
 const HEMO={think:'side',rlose:'worry',glose:'pleased'};
 let opp='haru',lv=1,cur=null,G=null,busy=false,seq=0;
 const rec=()=>{S.games=S.games||{};if(S.omok&&!S.games.omok){S.games.omok={navi:{w:S.omok.w||0,l:S.omok.l||0,d:0}};delete S.omok}return S.games};
@@ -57,54 +55,18 @@ const OM={id:'omok',aspect:1,N:15,
   busy=true;const th=this.threat(1);talk(opp,th?'threat':'think');if(opp==='navi'&&!th)mascot('stone');await sleep(R(450,850));if(!alive())return;
   const[a,b]=this.ai();const w=this.put(a,b,2);this.draw();busy=false;if(w)return end('l');if(G.moves>=225)return end('d');
   if(this.threat(2))talk(opp,'attack');else if(Math.random()<.3)talk(opp,'idle');else if(opp==='navi')mascot('base')}};
-// ---------- 사목 (Connect Four) ----------
-const FO={id:'four',aspect:6/7,
- init(){G={b:Array.from({length:6},()=>Array(7).fill(0)),last:null,win:null,moves:0}},
- draw(){const{x,W,H}=canvas(),cw=W/7,ch=H/6;bgFill(x,W,H);const r=Math.min(cw,ch)*.38;
-  for(let rr=0;rr<6;rr++)for(let c=0;c<7;c++){const cx=(c+.5)*cw,cy=(rr+.5)*ch,v=G.b[rr][c];if(v)stone(x,cx,cy,r,v);else{x.strokeStyle='rgba(232,228,240,.18)';x.lineWidth=1;x.beginPath();x.arc(cx,cy,r,0,7);x.stroke()}}
-  if(G.last){const[c,rr]=G.last;x.strokeStyle=G.b[rr][c]===1?'rgba(255,255,255,.8)':'rgba(0,0,0,.6)';x.lineWidth=1.6;x.beginPath();x.arc((c+.5)*cw,(rr+.5)*ch,r*.4,0,7);x.stroke()}
-  if(G.win){x.strokeStyle='rgba(255,236,190,.9)';x.lineWidth=3;x.beginPath();x.moveTo((G.win[0][0]+.5)*cw,(G.win[0][1]+.5)*ch);x.lineTo((G.win[1][0]+.5)*cw,(G.win[1][1]+.5)*ch);x.stroke()}},
- drop(b,c){for(let r=5;r>=0;r--)if(!b[r][c])return r;return-1},
- win(b,c,r){const p=b[r][c];for(const[dc,dr]of[[1,0],[0,1],[1,1],[1,-1]]){let n=1,a=[c,r],z=[c,r],i=c+dc,j=r+dr;while(i>=0&&i<7&&j>=0&&j<6&&b[j][i]===p){n++;z=[i,j];i+=dc;j+=dr}i=c-dc;j=r-dr;while(i>=0&&i<7&&j>=0&&j<6&&b[j][i]===p){n++;a=[i,j];i-=dc;j-=dr}if(n>=4)return[a,z]}return null},
- score(b){let s=0;const w=(a,p)=>{let me=0,op=0;for(const v of a){if(v===2)me++;else if(v===1)op++}if(me&&op)return 0;if(me===4)return 1e5;if(op===4)return-1e5;return me===3?50:me===2?6:op===3?-60:op===2?-6:0};
-  for(let r=0;r<6;r++)s+=(b[r][3]===2?4:b[r][3]===1?-4:0);
-  for(let r=0;r<6;r++)for(let c=0;c<7;c++)for(const[dc,dr]of[[1,0],[0,1],[1,1],[1,-1]]){const ec=c+3*dc,er=r+3*dr;if(ec<0||ec>6||er<0||er>5)continue;s+=w([0,1,2,3].map(k=>b[r+k*dr][c+k*dc]))}return s},
- nega(b,d,al,be,p){const order=[3,2,4,1,5,0,6];let any=false,best=-Infinity;
-  for(const c of order){const r=this.drop(b,c);if(r<0)continue;any=true;b[r][c]=p;let v;if(this.win(b,c,r))v=1e6+d;else if(d===0)v=(p===2?1:-1)*this.score(b);else v=-this.nega(b,d-1,-be,-al,3-p);b[r][c]=0;if(v>best)best=v;if(v>al)al=v;if(al>=be)break}
-  return any?best:0},
- ai(){const b=G.b,d=[1,3,5][lv];let best=-Infinity,bc=3;for(const c of[3,2,4,1,5,0,6]){const r=this.drop(b,c);if(r<0)continue;b[r][c]=2;let v=this.win(b,c,r)?1e7:-this.nega(b,d-1,-Infinity,Infinity,1);b[r][c]=0;v+=Math.random()*[400,30,1][lv];if(v>best){best=v;bc=c}}return bc},
- put(c,p){const r=this.drop(G.b,c);G.b[r][c]=p;G.last=[c,r];G.moves++;const w=this.win(G.b,c,r);if(w)G.win=w;return w},
- async tap(px,py,W){const c=Math.floor(px/(W/7));if(c<0||c>6||this.drop(G.b,c)<0)return;
-  if(this.put(c,1)){this.draw();return end('w')}this.draw();if(G.moves>=42)return end('d');busy=true;talk(opp,'think');if(opp==='navi')mascot('stone');
-  await sleep(R(350,700));if(!alive())return;const w=this.put(this.ai(),2);this.draw();busy=false;if(w)return end('l');if(G.moves>=42)return end('d');if(Math.random()<.3)talk(opp,'idle');else if(opp==='navi')mascot('base')}};
-// ---------- 리버시 ----------
-const WT=[[100,-20,10,5,5,10,-20,100],[-20,-50,-2,-2,-2,-2,-50,-20],[10,-2,-1,-1,-1,-1,-2,10],[5,-2,-1,-1,-1,-1,-2,5],[5,-2,-1,-1,-1,-1,-2,5],[10,-2,-1,-1,-1,-1,-2,10],[-20,-50,-2,-2,-2,-2,-50,-20],[100,-20,10,5,5,10,-20,100]];
-const RV={id:'reversi',aspect:1,
- init(){const b=Array.from({length:8},()=>Array(8).fill(0));b[3][3]=b[4][4]=2;b[3][4]=b[4][3]=1;G={b,last:null}},
- flips(b,x,y,p){if(b[y][x])return[];const out=[];for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]]){const t=[];let i=x+dx,j=y+dy;while(i>=0&&j>=0&&i<8&&j<8&&b[j][i]===3-p){t.push([i,j]);i+=dx;j+=dy}if(t.length&&i>=0&&j>=0&&i<8&&j<8&&b[j][i]===p)out.push(...t)}return out},
- moves(b,p){const m=[];for(let y=0;y<8;y++)for(let x=0;x<8;x++){const f=this.flips(b,x,y,p);if(f.length)m.push({x,y,f})}return m},
- count(){let a=0,c=0;G.b.forEach(r=>r.forEach(v=>{if(v===1)a++;else if(v===2)c++}));return[a,c]},
- draw(){const{x,W}=canvas(),m=W/8;bgFill(x,W,W);x.strokeStyle=pearlLine(x,W,W);x.lineWidth=1;for(let i=0;i<=8;i++){x.beginPath();x.moveTo(i*m,0);x.lineTo(i*m,W);x.stroke();x.beginPath();x.moveTo(0,i*m);x.lineTo(W,i*m);x.stroke()}
-  for(let j=0;j<8;j++)for(let i=0;i<8;i++)if(G.b[j][i])stone(x,(i+.5)*m,(j+.5)*m,m*.4,G.b[j][i]);
-  if(!G.over&&!busy){x.fillStyle='rgba(232,228,240,.28)';this.moves(G.b,1).forEach(v=>{x.beginPath();x.arc((v.x+.5)*m,(v.y+.5)*m,m*.09,0,7);x.fill()})}
-  if(G.last){const[a,b]=G.last;x.strokeStyle='rgba(0,0,0,.6)';x.lineWidth=1.6;x.beginPath();x.arc((a+.5)*m,(b+.5)*m,m*.15,0,7);x.stroke()}
-  const[me,ai]=this.count();$('gTitle').textContent=`리버시 ${me} : ${ai}`},
- apply(v,p){G.b[v.y][v.x]=p;v.f.forEach(([i,j])=>G.b[j][i]=p);G.last=[v.x,v.y]},
- ai(){const ms=this.moves(G.b,2);if(!ms.length)return null;const pos=v=>WT[v.y][v.x];
-  if(lv===0)return pick(ms.slice().sort((a,b)=>b.f.length-a.f.length).slice(0,4));
-  let best=null,bs=-Infinity;for(const v of ms){let s=pos(v)+v.f.length*(lv===1?2:1);
-   if(lv===2){const b2=G.b.map(r=>r.slice());b2[v.y][v.x]=2;v.f.forEach(([i,j])=>b2[j][i]=2);const rep=this.moves(b2,1);s-=rep.length?Math.max(...rep.map(u=>WT[u.y][u.x]+u.f.length)):-30}
-   s+=Math.random()*3;if(s>bs){bs=s;best=v}}return best},
- finish(){const[a,c]=this.count();end(a>c?'w':a<c?'l':'d')},
- async tap(px,py,W){const m=W/8,x=Math.floor(px/m),y=Math.floor(py/m);if(x<0||y<0||x>7||y>7)return;const f=this.flips(G.b,x,y,1);if(!f.length)return;
-  this.apply({x,y,f},1);busy=true;this.draw();
-  for(;;){if(!this.moves(G.b,2).length){if(!this.moves(G.b,1).length){busy=false;this.draw();return this.finish()}talk(opp,'pass');busy=false;this.draw();return}
-   talk(opp,'think');if(opp==='navi')mascot('stone');await sleep(R(450,850));if(!alive())return;this.apply(this.ai(),2);this.draw();
-   if(this.moves(G.b,1).length)break;if(!this.moves(G.b,2).length){busy=false;this.draw();return this.finish()}talk(opp,'upass');await sleep(900)}
-  busy=false;this.draw();if(Math.random()<.3)talk(opp,'idle');else if(opp==='navi')mascot('base')}};
 // ---------- 체스 ----------
 const VAL={p:100,n:320,b:330,r:500,q:900,k:0},GLY={k:'♚',q:'♛',r:'♜',b:'♝',n:'♞',p:'♟'};
 const isW=p=>p&&p===p.toUpperCase(),col=p=>p?(isW(p)?'w':'b'):null;
+// 기물은 글꼴 기호를 따로 그린 뒤 실제 그려진 픽셀 범위를 재서 칸 가운데에 놓는다(기기마다 글꼴 정렬이 달라서)
+const SPR={};function pieceSprite(p,m){const key=p+'|'+Math.round(m);if(SPR[key])return SPR[key];const dpr=window.devicePixelRatio||1,F=m*.8*dpr,Z=Math.ceil(F*2),c=document.createElement('canvas');c.width=c.height=Z;const x=c.getContext('2d',{willReadFrequently:true});
+ x.font=`${F}px "Apple Symbols","Segoe UI Symbol","Noto Sans Symbols 2","DejaVu Sans",serif`;x.textAlign='left';x.textBaseline='alphabetic';x.lineJoin='round';const g=GLY[p.toLowerCase()]+'\uFE0E',ox=F*.4,oy=F*1.4;
+ if(isW(p)){x.lineWidth=F*.075;x.strokeStyle='#121214';x.strokeText(g,ox,oy);const gr=x.createLinearGradient(0,0,Z,Z);gr.addColorStop(0,'#ffffff');gr.addColorStop(.5,'#ece4f2');gr.addColorStop(1,'#d3dcef');x.fillStyle=gr;x.fillText(g,ox,oy)}
+ else{x.lineWidth=F*.06;x.strokeStyle='rgba(232,228,240,.75)';x.strokeText(g,ox,oy);x.fillStyle='#09090b';x.fillText(g,ox,oy)}
+ const d=x.getImageData(0,0,Z,Z).data;let x0=Z,y0=Z,x1=0,y1=0;for(let j=0;j<Z;j++)for(let i=0;i<Z;i++)if(d[(j*Z+i)*4+3]>10){if(i<x0)x0=i;if(i>x1)x1=i;if(j<y0)y0=j;if(j>y1)y1=j}
+ if(x1<x0){x0=y0=0;x1=y1=Z-1}const w=x1-x0+1,h=y1-y0+1;
+ // 크기는 킹 높이를 기준으로 맞춘다(폰은 작게, 킹은 크게 그대로)
+ const kh=p.toLowerCase()==='k'?h:pieceSprite(isW(p)?'K':'k',m).h,sc=(m*.8)/kh;return SPR[key]={c,x:x0,y:y0,w,h,dw:w*sc,dh:h*sc}}
 const CH={id:'chess',aspect:1,
  init(){const r='rnbqkbnr';const b=[...r,...'pppppppp',...Array(32).fill(''),...'PPPPPPPP',...r.toUpperCase()];G={st:{b,t:'w',c:{K:1,Q:1,k:1,q:1},ep:-1},sel:-1,tg:[],last:null}},
  att(b,sq,by){const r=sq>>3,c=sq&7,at=(rr,cc)=>rr>=0&&rr<8&&cc>=0&&cc<8?b[rr*8+cc]:null,me=p=>p&&col(p)===by;
@@ -144,10 +106,7 @@ const CH={id:'chess',aspect:1,
   if(G.last){tint(G.last.f,'rgba(236,220,236,.14)');tint(G.last.t,'rgba(236,220,236,.2)')}
   if(G.sel>=0)tint(G.sel,'rgba(214,236,238,.28)');
   if(this.inCheck(st)){const k=this.king(st.b,st.t),g=x.createRadialGradient(((k&7)+.5)*m,((k>>3)+.5)*m,2,((k&7)+.5)*m,((k>>3)+.5)*m,m*.6);g.addColorStop(0,'rgba(230,140,160,.6)');g.addColorStop(1,'rgba(230,140,160,0)');x.fillStyle=g;x.fillRect((k&7)*m,(k>>3)*m,m,m)}
-  x.textAlign='center';x.textBaseline='middle';x.font=`${m*.78}px "Apple Symbols","Segoe UI Symbol","Noto Sans Symbols 2","DejaVu Sans",serif`;
-  for(let s=0;s<64;s++){const p=st.b[s];if(!p)continue;const cx=((s&7)+.5)*m,cy=((s>>3)+.54)*m,g=GLY[p.toLowerCase()]+'︎';
-   x.lineJoin='round';if(isW(p)){x.lineWidth=m*.06;x.strokeStyle='#121214';x.strokeText(g,cx,cy);const gr=x.createLinearGradient(cx-m/2,cy-m/2,cx+m/2,cy+m/2);gr.addColorStop(0,'#ffffff');gr.addColorStop(.5,'#ece4f2');gr.addColorStop(1,'#d3dcef');x.fillStyle=gr;x.fillText(g,cx,cy)}
-   else{x.lineWidth=m*.05;x.strokeStyle='rgba(232,228,240,.7)';x.strokeText(g,cx,cy);x.fillStyle='#09090b';x.fillText(g,cx,cy)}}
+  for(let s=0;s<64;s++){const p=st.b[s];if(!p)continue;const sp=pieceSprite(p,m);x.drawImage(sp.c,sp.x,sp.y,sp.w,sp.h,((s&7)+.5)*m-sp.dw/2,((s>>3)+.5)*m-sp.dh/2+m*.03,sp.dw,sp.dh)}
   x.fillStyle='rgba(214,236,238,.55)';G.tg.forEach(t=>{x.beginPath();x.arc(((t.t&7)+.5)*m,((t.t>>3)+.5)*m,st.b[t.t]?m*.44:m*.12,0,7);st.b[t.t]?(x.strokeStyle='rgba(214,236,238,.6)',x.lineWidth=2,x.stroke()):x.fill()})},
  after(){const st=G.st,ms=this.legal(st);if(!ms.length){if(this.inCheck(st))return end(st.t==='b'?'w':'l'),true;return end('d'),true}
   const left=st.b.filter(Boolean);if(left.length===2)return end('d'),true;return false},
@@ -156,73 +115,159 @@ const CH={id:'chess',aspect:1,
    busy=true;talk(opp,'think');await sleep(60);await new Promise(r=>requestAnimationFrame(()=>setTimeout(r,R(250,500))));if(!alive())return;
    const a=this.ai();G.st=this.make(G.st,a);G.last=a;busy=false;this.draw();if(this.after())return;if(this.inCheck(G.st))talk(opp,'check');else if(Math.random()<.25)talk(opp,'idle');else if(opp==='navi')mascot('base');return}
   if(st.b[s]&&col(st.b[s])==='w'){G.sel=s;G.tg=this.legal(st).filter(t=>t.f===s)}else{G.sel=-1;G.tg=[]}this.draw()}};
-// ---------- 셋이서: 공통 자리 ----------
-const WHO=['me','haru','navi'];
-function seats(){const box=el('div','seats');WHO.forEach(w=>{const s=el('div','seat');s.dataset.w=w;s.append(av(w),el('div','nm',w==='me'?(S.name||'나'):NAME[w]),el('div','v',''),el('div','pt',''));box.appendChild(s)});return box}
-const seat=w=>$('gStage').querySelector(`.seat[data-w=${w}]`);
-function setSeat(w,v,pt,win){const s=seat(w);if(!s)return;if(v!=null){const V=s.querySelector('.v');if(v instanceof Node){V.innerHTML='';V.appendChild(v)}else V.textContent=v}if(pt!=null)s.querySelector('.pt').textContent=pt;s.classList.toggle('win',!!win)}
-function trioEnd(w){G.over=true;recOf(cur.id,'trio')[w]++;save();score();
- if(w==='me'){talk('haru','glose');setTimeout(()=>alive()&&talk('navi','glose'),1400)}else{talk(w,'gwin');setTimeout(()=>alive()&&talk(w==='haru'?'navi':'haru',w==='haru'?'rlose':'rlose'),1400)}}
-const pts=()=>WHO.forEach(w=>setSeat(w,null,`${G.sc[w]}점`));
-// ---------- 가위바위보 ----------
-const HAND=['가위','바위','보'],BEAT={가위:'보',바위:'가위',보:'바위'};
-const RPS={id:'rps',dom:true,
- init(){G={sc:{me:0,haru:0,navi:0}}},
- draw(){const S0=$('gStage');S0.innerHTML='';S0.appendChild(seats());pts();const pad=el('div','gpad');HAND.forEach(h=>{const b=el('button','btn ghost',h);b.onclick=()=>this.play(h);pad.appendChild(b)});S0.appendChild(pad)},
- async play(h){if(busy||G.over)return;busy=true;WHO.forEach(w=>setSeat(w,'…',null,false));talk(pick(['haru','navi']),'가위, 바위…','base');await sleep(650);if(!alive())return;
-  const ch={me:h,haru:pick(HAND),navi:pick(HAND)};WHO.forEach(w=>setSeat(w,ch[w]));const set=new Set(Object.values(ch));
-  if(set.size!==2){talk(pick(['haru','navi']),'rdraw');busy=false;return}
-  const [a,b]=[...set],win=BEAT[a]===b?a:b,ws=WHO.filter(w=>ch[w]===win);ws.forEach(w=>{G.sc[w]++;setSeat(w,null,null,true)});pts();
-  const top=WHO.find(w=>G.sc[w]>=3);busy=false;if(top)return trioEnd(top);
-  if(ws.includes('navi'))talk('navi','rwin');else if(ws.includes('haru'))talk('haru','rwin');else talk(pick(['haru','navi']),'rlose')}};
-// ---------- 업다운 ----------
-const UD={id:'updown',dom:true,
- init(){G={lo:1,hi:100,ans:1+Math.floor(Math.random()*100),turn:0,sc:{me:0,haru:0,navi:0},last:{}}},
- draw(){const S0=$('gStage');S0.innerHTML='';S0.appendChild(seats());WHO.forEach(w=>setSeat(w,G.last[w]!=null?G.last[w]:'–',G.turn===WHO.indexOf(w)&&!G.over?'차례':''));
-  const rg=el('div','urange',`${G.lo} ~ ${G.hi}`);S0.appendChild(rg);
-  const pad=el('div','gpad');const i=el('input','f');i.type='number';i.inputMode='numeric';i.placeholder='숫자';i.id='udIn';const b=el('button','btn','확인');
-  b.onclick=()=>{const v=Math.round(+i.value);if(!v)return;i.value='';this.guess('me',v)};i.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing)b.click()});
-  i.disabled=b.disabled=G.turn!==0||G.over||busy;pad.append(i,b);S0.appendChild(pad)},
- async guess(w,v){if(G.over)return;if(v<G.lo||v>G.hi){if(w==='me')talk('haru',`${G.lo}에서 ${G.hi} 사이로 말해주세요.`,'worry');return}
-  G.last[w]=v;if(v===G.ans){G.lo=G.hi=v;this.draw();setSeat(w,null,null,true);return trioEnd(w)}
-  if(v<G.ans)G.lo=v+1;else G.hi=v-1;const up=v<G.ans;G.turn=(G.turn+1)%3;busy=true;this.draw();
-  talk(pick(['haru','navi'].filter(x=>x!==w)),`${v}… ${up?'업!':'다운!'}`,up?'nod':'nod');await sleep(1000);if(!alive())return;busy=false;
-  const nx=WHO[G.turn];if(nx==='me'){this.draw();setTimeout(()=>{const i=$('udIn');i&&i.focus()},50);return}
-  let g;if(nx==='haru'){const mid=(G.lo+G.hi)/2;g=Math.round(mid+(Math.random()-.5)*Math.min(6,(G.hi-G.lo)/3))}else g=G.lo+Math.floor(Math.random()*(G.hi-G.lo+1));
-  g=Math.min(G.hi,Math.max(G.lo,g));talk(nx,nx==='haru'?`…${g}.`:`${g}!`,nx==='haru'?'side':'think');busy=true;this.draw();await sleep(900);if(!alive())return;busy=false;this.guess(nx,g)}};
-// ---------- 주사위 ----------
+// ---------- 칩 · 카드 공통 ----------
+const COIN0=1000;
+const coin=w=>w==='me'?(S.coin=S.coin==null?COIN0:S.coin):((S.coinOpp=S.coinOpp||{})[w]=S.coinOpp[w]==null?COIN0:S.coinOpp[w]);
+const addCoin=(w,v)=>{if(w==='me')S.coin=coin('me')+v;else{coin(w);S.coinOpp[w]+=v}};
+const fmtC=n=>Math.round(n).toLocaleString('ko-KR');
+function refill(ids){for(const w of ids){if(coin(w)>=20)continue;if(w==='me'){S.coin=COIN0;talk('haru','…칩이 다 떨어지셨네요. 1,000개 다시 채워드릴게요.','worry')}else{S.coinOpp[w]=COIN0;talk(w,w==='haru'?'…저도 다시 채울게요.':'칩 다시 받아왔어요~','base')}}save()}
+const SUIT=['♠','♥','♦','♣'],RK={11:'J',12:'Q',13:'K',14:'A'};
+function deck(){const d=[];for(let s=0;s<4;s++)for(let r=2;r<=14;r++)d.push({r,s});for(let i=d.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[d[i],d[j]]=[d[j],d[i]]}return d}
+function cardEl(c,hide){const e=el('span','pc'+(hide?' back':(c.s===1||c.s===2?' red':'')));if(!hide){e.append(el('b',null,RK[c.r]||String(c.r)),el('i',null,SUIT[c.s]+'︎'))}return e}
+function cardsEl(cs,hideFrom){const w=el('span','pcs');cs.forEach((c,i)=>w.appendChild(cardEl(c,hideFrom!=null&&i>=hideFrom)));return w}
+function betBar(vals,cb){const box=el('div','seg bets');vals.forEach(v=>{const b=el('button',G.bet===v?'on':'',fmtC(v));b.onclick=()=>{G.bet=v;cb()};box.appendChild(b)});return box}
+const who=()=>opp==='trio'?['me','haru','navi']:['me',opp];
+const nameOf=w=>w==='me'?(S.name||'나'):NAME[w];
+function row(w,inner,sub,cls){const r=el('div','prow'+(cls?' '+cls:''));const h=el('div','ph');h.append(av(w),el('span','pn',nameOf(w)),el('span','pchip',fmtC(coin(w))));r.append(h);if(inner)r.appendChild(inner);if(sub!=null)r.appendChild(el('div','psub',sub));return r}
+// ---------- 블랙잭 ----------
+const bjv=cs=>{let t=0,a=0;cs.forEach(c=>{t+=c.r>=11&&c.r<=13?10:c.r===14?11:c.r;if(c.r===14)a++});while(t>21&&a){t-=10;a--}return t};
+const isBJ=cs=>cs.length===2&&bjv(cs)===21;
+const BJ={id:'blackjack',dom:true,
+ init(){G={bet:G&&G.bet||50,phase:'bet',d:[],dl:[],P:{},msg:{}}},
+ dealer(){return opp==='trio'?'haru':opp},
+ players(){return opp==='trio'?['me','navi']:['me']},
+ draw(){const S0=$('gStage');S0.innerHTML='';const dl=this.dealer();
+  S0.appendChild(row(dl,G.dl.length?cardsEl(G.dl,G.phase==='play'?1:null):el('span','pcs ghost','딜러'),G.dl.length&&G.phase!=='play'?`${bjv(G.dl)}`:'', 'dealer'));
+  const PW=el('div',this.players().length>1?'popps':'');S0.appendChild(PW);this.players().forEach(w=>{const h=G.P[w];PW.appendChild(row(w,h?cardsEl(h.c):null,h?`${bjv(h.c)}${h.bust?' · 버스트':''}${G.msg[w]?' · '+G.msg[w]:''} · 베팅 ${fmtC(h.bet)}`:'',G.turn===w&&G.phase==='play'?'on':''))});
+  const pad=el('div','gpad col');
+  if(G.phase==='bet'||G.phase==='done'){pad.appendChild(betBar([10,50,100,200],()=>this.draw()));const b=el('button','btn',G.phase==='done'?'다음 판':'딜');b.onclick=()=>this.deal();pad.appendChild(b)}
+  else if(G.turn==='me'){const r=el('div','gpad');const h=G.P.me;[['히트',()=>this.hit()],['스탠드',()=>this.stand()]].forEach(([l,f])=>{const b=el('button','btn',l);b.onclick=f;r.appendChild(b)});
+   if(h.c.length===2&&coin('me')>=h.bet*2){const b=el('button','btn ghost','더블');b.onclick=()=>this.dbl();r.appendChild(b)}pad.appendChild(r)}
+  S0.appendChild(pad)},
+ async deal(){if(busy)return;refill(['me',...this.players(),this.dealer()]);if(G.bet>coin('me'))G.bet=Math.max(10,Math.floor(coin('me')/10)*10);
+  G.d=deck();G.dl=[G.d.pop(),G.d.pop()];G.P={};G.msg={};this.players().forEach(w=>{const bet=w==='me'?G.bet:Math.min(coin(w),pick([20,50,50,100]));G.P[w]={c:[G.d.pop(),G.d.pop()],bet,done:false}});
+  G.phase='play';talk(this.dealer(),'deal');
+  if(isBJ(G.dl)){G.phase='end';return this.settle()}
+  G.order=this.players().slice();this.next()},
+ next(){G.turn=G.order.find(w=>!G.P[w].done);if(G.turn&&isBJ(G.P[G.turn].c)){G.P[G.turn].done=true;G.msg[G.turn]='블랙잭!';return this.next()}
+  this.draw();if(!G.turn)return this.dealerPlay();if(G.turn!=='me')this.aiPlay(G.turn)},
+ hit(){const h=G.P.me;h.c.push(G.d.pop());if(bjv(h.c)>21){h.bust=h.done=true;talk(this.dealer(),'bust')}else if(bjv(h.c)===21)h.done=true;this.next()},
+ stand(){G.P.me.done=true;this.next()},
+ dbl(){const h=G.P.me;h.bet*=2;h.c.push(G.d.pop());if(bjv(h.c)>21)h.bust=true;h.done=true;this.next()},
+ async aiPlay(w){busy=true;const h=G.P[w],up=G.dl[0].r>=11&&G.dl[0].r<=13?10:G.dl[0].r===14?11:G.dl[0].r;
+  while(true){await sleep(700);if(!alive())return;const v=bjv(h.c);if(v>=17||(v>=13&&up<=6)||(w==='navi'&&v>=15&&Math.random()<.5))break;h.c.push(G.d.pop());this.draw();if(bjv(h.c)>21){h.bust=true;break}}
+  h.done=true;busy=false;this.next()},
+ async dealerPlay(){busy=true;G.phase='reveal';this.draw();const live=this.players().some(w=>!G.P[w].bust);
+  while(live&&bjv(G.dl)<17){await sleep(650);if(!alive())return;G.dl.push(G.d.pop());this.draw()}busy=false;this.settle()},
+ settle(){const dl=this.dealer(),dv=bjv(G.dl),dbj=isBJ(G.dl);let meNet=0;
+  this.players().forEach(w=>{const h=G.P[w],v=bjv(h.c),bj=isBJ(h.c);let net;
+   if(h.bust)net=-h.bet;else if(bj&&!dbj)net=Math.floor(h.bet*1.5);else if(dbj&&!bj)net=-h.bet;else if(dv>21||v>dv)net=h.bet;else if(v<dv)net=-h.bet;else net=0;
+   addCoin(w,net);addCoin(dl,-net);G.msg[w]=net>0?`+${fmtC(net)}`:net<0?`-${fmtC(-net)}`:'무승부';if(w==='me')meNet=net});
+  G.phase='done';G.turn=null;save();score();this.draw();talk(dl,meNet>0?'pwin':meNet<0?'plose':'push')}};
+// ---------- 홀덤 ----------
+const HN=['하이카드','원페어','투페어','트리플','스트레이트','플러시','풀하우스','포카드','스트레이트 플러시'];
+function ev5(cs){const r=cs.map(c=>c.r).sort((a,b)=>b-a),fl=cs.every(c=>c.s===cs[0].s);let u=[...new Set(r)],st=0;
+ if(u.length===5){if(u[0]-u[4]===4)st=u[0];else if(u[0]===14&&u[1]===5)st=5}
+ const cnt={};r.forEach(x=>cnt[x]=(cnt[x]||0)+1);const g=Object.entries(cnt).map(([k,v])=>[v,+k]).sort((a,b)=>b[0]-a[0]||b[1]-a[1]);
+ const k=(cat,arr)=>cat*1e10+arr.reduce((s,v,i)=>s+v*Math.pow(15,4-i),0);
+ if(st&&fl)return k(8,[st]);if(g[0][0]===4)return k(7,[g[0][1],g[1][1]]);if(g[0][0]===3&&g[1][0]===2)return k(6,[g[0][1],g[1][1]]);if(fl)return k(5,r);if(st)return k(4,[st]);
+ if(g[0][0]===3)return k(3,g.map(x=>x[1]));if(g[0][0]===2&&g[1][0]===2)return k(2,g.map(x=>x[1]));if(g[0][0]===2)return k(1,g.map(x=>x[1]));return k(0,r)}
+function best7(cs){let b=0;const n=cs.length;for(let a=0;a<n;a++)for(let c=a+1;c<n;c++){const f=cs.filter((_,i)=>i!==a&&i!==c);if(f.length===5){const v=ev5(f);if(v>b)b=v}}return n===5?ev5(cs):b}
+const hname=v=>HN[Math.floor(v/1e10)];
+function equity(hole,board,nOpp,known){const used=new Set([...hole,...board].map(c=>c.r*4+c.s));let win=0;const N=160;
+ for(let t=0;t<N;t++){const d=deck().filter(c=>!used.has(c.r*4+c.s));const bd=board.concat(d.splice(0,5-board.length));const me=best7(hole.concat(bd));let ok=1,tie=0;
+  for(let o=0;o<nOpp;o++){const v=best7(d.splice(0,2).concat(bd));if(v>me){ok=0;break}if(v===me)tie=1}win+=ok?(tie?.5:1):0}return win/N}
+const HE={id:'holdem',dom:true,
+ init(){G={phase:'idle',btn:G&&G.btn!=null?G.btn:0,P:[],bd:[],pot:0,log:{}}},
+ draw(){const S0=$('gStage');S0.innerHTML='';const show=G.phase==='show';
+  const OP=el('div',G.P.length>2?'popps':'');S0.appendChild(OP);G.P.filter(p=>p.id!=='me').forEach(p=>OP.appendChild(row(p.id,p.h?cardsEl(p.h,show&&!p.fold?null:0):null,p.fold?'폴드':[G.log[p.id]||'',p.bet?`베팅 ${fmtC(p.bet)}`:''].filter(Boolean).join(' · '),G.turn===p.id?'on':p.fold?'out':'')));
+  const mid=el('div','pboard');const bd=el('span','pcs');for(let i=0;i<5;i++)bd.appendChild(G.bd[i]&&i<this.shown()?cardEl(G.bd[i]):el('span','pc slot'));mid.append(bd,el('div','ppot',`팟 ${fmtC(G.pot+G.P.reduce((a,p)=>a+p.bet,0))}`));S0.appendChild(mid);
+  const me=G.P.find(p=>p.id==='me');S0.appendChild(row('me',me&&me.h?cardsEl(me.h):null,me&&me.h?(G.phase==='show'?(G.log.me||''):[this.shown()>=3?hname(best7(me.h.concat(G.bd.slice(0,this.shown())))):'',me.bet?`베팅 ${fmtC(me.bet)}`:'',G.log.me||''].filter(Boolean).join(' · ')):'',G.turn==='me'?'on':''));
+  const pad=el('div','gpad');
+  if(G.phase!=='play'){const b=el('button','btn',G.phase==='idle'?'시작 (블라인드 10/20)':'다음 판');b.onclick=()=>this.hand();pad.appendChild(b)}
+  else if(G.turn==='me'){const mx=Math.max(...G.P.map(p=>p.bet)),need=mx-me.bet,step=G.street<2?20:40;
+   const f=el('button','btn ghost','폴드');f.onclick=()=>this.act('fold');const c=el('button','btn ghost',need?`콜 ${fmtC(Math.min(need,coin('me')))}`:'체크');c.onclick=()=>this.act('call');pad.append(f,c);
+   if(G.raises<4&&coin('me')>need){const r=el('button','btn',`레이즈 +${step}`);r.onclick=()=>this.act('raise');pad.appendChild(r)}}
+  S0.appendChild(pad)},
+ shown(){return[0,3,4,5][G.street]||0},
+ hand(){if(busy)return;const ids=who();refill(ids);const n=ids.length;G.btn=(G.btn+1)%n;G.d=deck();G.P=ids.map(id=>({id,h:[G.d.pop(),G.d.pop()],bet:0,put:0,fold:false,allin:false,acted:false}));G.bd=[G.d.pop(),G.d.pop(),G.d.pop(),G.d.pop(),G.d.pop()];G.pot=0;G.log={};
+  G.street=0;G.raises=0;G.phase='play';const sb=n===2?G.btn:(G.btn+1)%n,bb=(sb+1)%n;this.pay(G.P[sb],10);this.pay(G.P[bb],20);G.log[G.P[sb].id]='SB';G.log[G.P[bb].id]='BB';G.cur=(bb+1)%n;this.loop()},
+ pay(p,v){v=Math.min(v,coin(p.id));addCoin(p.id,-v);p.bet+=v;p.put+=v;if(coin(p.id)<=0)p.allin=true},
+ alive(){return G.P.filter(p=>!p.fold)},
+ async loop(){for(;;){if(!alive())return;const live=this.alive();if(live.length===1)return this.win([live[0]]);
+   const mx=Math.max(...G.P.map(p=>p.bet));const n=G.P.length;let p=null;for(let i=0;i<n;i++){const q=G.P[(G.cur+i)%n];if(!q.fold&&!q.allin&&(!q.acted||q.bet<mx)){p=q;G.cur=(G.cur+i)%n;break}}
+   if(!p){if(!(await this.street()))return;continue}
+   G.turn=p.id;this.draw();if(p.id==='me')return;busy=true;await sleep(R(600,1100));if(!alive())return;busy=false;this.ai(p)}},
+ act(a){const p=G.P.find(q=>q.id==='me');if(G.turn!=='me')return;this.apply(p,a);this.loop()},
+ apply(p,a){const mx=Math.max(...G.P.map(q=>q.bet)),step=G.street<2?20:40;p.acted=true;
+  if(a==='fold'){p.fold=true;G.log[p.id]='폴드'}else if(a==='raise'&&G.raises<4){this.pay(p,mx-p.bet+step);G.raises++;G.P.forEach(q=>{if(q!==p)q.acted=false});G.log[p.id]=`레이즈`}
+  else{const need=mx-p.bet;if(need){this.pay(p,need);G.log[p.id]='콜'}else G.log[p.id]='체크'}
+  if(p.id!=='me'&&(a==='raise'||a==='fold'))talk(p.id,a==='raise'?'raise':'fold');G.cur=(G.P.indexOf(p)+1)%G.P.length},
+ ai(p){const mx=Math.max(...G.P.map(q=>q.bet)),need=mx-p.bet,pot=G.pot+G.P.reduce((a,q)=>a+q.bet,0),eq=equity(p.h,G.bd.slice(0,this.shown()),this.alive().length-1),odds=need/(pot+need||1),loose=p.id==='navi'?.07:0;
+  let a;if(eq>(p.id==='haru'?.62:.58)-loose&&G.raises<4&&Math.random()<.8)a='raise';else if(need===0)a=(Math.random()<.08+loose&&G.raises<4)?'raise':'call';else if(eq+loose>odds+.04)a='call';else a=Math.random()<loose?'call':'fold';
+  this.apply(p,a)},
+ async street(){G.P.forEach(p=>{G.pot+=p.bet;p.bet=0;p.acted=false});G.raises=0;
+  const can=this.alive().filter(p=>!p.allin).length;if(G.street===3)return this.show(),false;
+  G.street++;G.log={};const n=G.P.length;G.cur=(G.btn+1)%n;this.draw();
+  if(can<=1){busy=true;await sleep(700);if(!alive())return false;busy=false;return this.street()}return true},
+ show(){G.phase='show';G.turn=null;const live=this.alive(),sc=new Map(live.map(p=>[p,best7(p.h.concat(G.bd))]));
+  // 사이드팟까지 나눠주기
+  const lv=[...new Set(G.P.map(p=>p.put))].sort((a,b)=>a-b);let prev=0,won={};
+  for(const L of lv){const slice=G.P.reduce((a,p)=>a+Math.max(0,Math.min(p.put,L)-prev),0);const el2=live.filter(p=>p.put>=L);if(!el2.length||!slice){prev=L;continue}
+   const top=Math.max(...el2.map(p=>sc.get(p))),ws=el2.filter(p=>sc.get(p)===top);ws.forEach(p=>{addCoin(p.id,slice/ws.length);won[p.id]=(won[p.id]||0)+slice/ws.length});prev=L}
+  live.forEach(p=>G.log[p.id]=hname(sc.get(p))+(won[p.id]?` · +${fmtC(won[p.id])}`:''));save();score();this.draw();
+  const mw=won.me>0,w=Object.keys(won).find(k=>k!=='me');talk(w||(opp==='trio'?'haru':opp),mw?'plose':'pwin')},
+ win(ws){const tot=G.pot+G.P.reduce((a,p)=>a+p.bet,0);G.P.forEach(p=>{p.bet=0});G.pot=0;addCoin(ws[0].id,tot);G.log[ws[0].id]=`+${fmtC(tot)}`;G.phase='won';G.turn=null;save();score();this.draw();
+  const w=ws[0].id;talk(w==='me'?(opp==='trio'?'haru':opp):w,w==='me'?'plose':'pwin')}};
+// ---------- 친치로 (주사위 3개) ----------
 const PIPS={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
 function die(n){const d=el('span','die');for(let i=0;i<9;i++){const p=document.createElement('i');if(PIPS[n].includes(i))p.className='on';d.appendChild(p)}return d}
-const pair=(a,b)=>{const f=document.createDocumentFragment(),w=el('span','dice');w.append(die(a),die(b));f.appendChild(w);return w};
-const DI={id:'dice',dom:true,
- init(){G={sc:{me:0,haru:0,navi:0}}},
- draw(){const S0=$('gStage');S0.innerHTML='';S0.appendChild(seats());pts();WHO.forEach(w=>setSeat(w,pair(1,1)));const pad=el('div','gpad');const b=el('button','btn','굴리기');b.onclick=()=>this.roll();pad.appendChild(b);S0.appendChild(pad)},
- async roll(){if(busy||G.over)return;busy=true;WHO.forEach(w=>setSeat(w,null,null,false));const t0=Date.now();
-  while(Date.now()-t0<700){WHO.forEach(w=>setSeat(w,pair(1+Math.random()*6|0,1+Math.random()*6|0)));await sleep(80);if(!alive())return}
-  const r={};WHO.forEach(w=>{const a=1+Math.random()*6|0,b=1+Math.random()*6|0;r[w]=a+b;setSeat(w,pair(a,b))});const mx=Math.max(...Object.values(r)),ws=WHO.filter(w=>r[w]===mx);
-  busy=false;if(ws.length>1){talk(pick(['haru','navi']),'rdraw');return}const w=ws[0];G.sc[w]++;setSeat(w,null,null,true);pts();
-  if(G.sc[w]>=3)return trioEnd(w);if(w==='me')talk(pick(['haru','navi']),'rlose');else talk(w,'rwin')}};
-const MOD={chess:CH,omok:OM,reversi:RV,four:FO,rps:RPS,updown:UD,dice:DI};
+const dice3=a=>{const w=el('span','dice');a.forEach(n=>w.appendChild(die(n)));return w};
+function ccHand(a){const s=a.slice().sort((x,y)=>x-y);if(s[0]===s[2])return s[0]===1?{v:1000,n:'핀조로',m:5}:{v:900+s[0],n:`트리플 ${s[0]}`,m:3};
+ if(s.join()==='4,5,6')return{v:800,n:'4-5-6',m:2};if(s.join()==='1,2,3')return{v:-1,n:'1-2-3',m:2,bad:1};
+ if(s[0]===s[1])return{v:100+s[2],n:`눈 ${s[2]}`,m:1};if(s[1]===s[2])return{v:100+s[0],n:`눈 ${s[0]}`,m:1};return null}
+const CC={id:'chinchiro',dom:true,
+ init(){G={bet:G&&G.bet||50,phase:'bet',R:{},T:{},turn:null}},
+ draw(){const S0=$('gStage');S0.innerHTML='';
+  who().forEach(w=>{const r=G.R[w],h=r&&ccHand(r);S0.appendChild(row(w,r?dice3(r):dice3([1,1,1]),r?(h?h.n:(G.T[w]>=3?'꽝':`꽝 · ${G.T[w]}/3`))+(G.msg&&G.msg[w]?` · ${G.msg[w]}`:''):'',G.turn===w?'on':''))});
+  const pad=el('div','gpad col');
+  if(G.phase!=='play'){pad.appendChild(betBar([10,50,100,200],()=>this.draw()));const b=el('button','btn',G.phase==='done'?'다음 판':'시작');b.onclick=()=>this.start();pad.appendChild(b)}
+  else if(G.turn==='me'){const b=el('button','btn',`굴리기 (${(G.T.me||0)+1}/3)`);b.onclick=()=>this.roll('me');pad.appendChild(b)}
+  S0.appendChild(pad)},
+ start(){if(busy)return;refill(who());if(G.bet>coin('me'))G.bet=Math.max(10,Math.floor(coin('me')/10)*10);G.R={};G.T={};G.msg={};G.phase='play';G.order=who();G.turn='me';this.draw();talk(opp==='trio'?'haru':opp,'ccgo')},
+ async roll(w){if(busy)return;busy=true;const t0=Date.now();while(Date.now()-t0<600){G.R[w]=[1,2,3].map(()=>1+Math.random()*6|0);this.draw();await sleep(70);if(!alive())return}
+  G.R[w]=[1,2,3].map(()=>1+Math.random()*6|0);G.T[w]=(G.T[w]||0)+1;busy=false;this.draw();const h=ccHand(G.R[w]);
+  if(h||G.T[w]>=3){if(h&&h.m>=2&&w!=='me')talk(w,h.bad?'ccbad':'ccbig');const i=G.order.indexOf(w);G.turn=G.order[i+1]||null;this.draw();if(!G.turn)return this.settle();if(G.turn!=='me'){await sleep(700);if(!alive())return;this.roll(G.turn)}}
+  else if(w!=='me'){await sleep(500);if(!alive())return;this.roll(w)}},
+ settle(){const H={};who().forEach(w=>H[w]=ccHand(G.R[w])||{v:0,n:'꽝',m:1});const top=Math.max(...who().map(w=>H[w].v)),ws=who().filter(w=>H[w].v===top);G.msg={};
+  if(ws.length===1){const W=ws[0];who().filter(w=>w!==W).forEach(w=>{const pay=Math.min(coin(w),G.bet*Math.max(H[W].m,H[w].bad?2:1));addCoin(w,-pay);addCoin(W,pay);G.msg[w]=`-${fmtC(pay)}`;G.msg[W]=`+${fmtC((+(G.msg[W]||'+0').slice(1).replace(/,/g,''))+pay)}`})}
+  G.phase='done';G.turn=null;save();score();this.draw();const m=ws.length>1?'push':ws[0]==='me'?'plose':'pwin';talk(ws.length===1&&ws[0]!=='me'?ws[0]:(opp==='trio'?'haru':opp),m)}};
 // ---------- 화면 ----------
 const alive=()=>G&&G.seq===seq&&$('game').classList.contains('open');
-function score(){if(!cur){$('gScore').textContent='';return}if(cur.dom){const r=recOf(cur.id,'trio');$('gScore').textContent=`승 ${r.me} · 하루 ${r.haru} · 나비 ${r.navi}`;return}
- const r=recOf(cur.id,opp);$('gScore').textContent=`${r.w}승 ${r.l}패${r.d?` ${r.d}무`:''}`}
-function recTxt(g){if(g.trio){const r=recOf(g.id,'trio');return r.me+r.haru+r.navi?`내가 ${r.me}번 이김`:'아직 안 해봤어요'}const r=recOf(g.id,opp);return r.w+r.l+r.d?`${r.w}승 ${r.l}패`+(r.d?` ${r.d}무`:''):'아직 안 해봤어요'}
+let mode='duo',duoOpp='haru';
+function score(){if(cur&&!MOD[cur.id].dom){const r=recOf(cur.id,opp);$('gScore').textContent=`${r.w}승 ${r.l}패${r.d?` ${r.d}무`:''}`}else $('gScore').textContent=`칩 ${fmtC(coin('me'))}`}
+function recTxt(g){if(g.bet)return'칩을 걸고';const r=recOf(g.id,opp);return r.w+r.l+r.d?`${r.w}승 ${r.l}패`+(r.d?` ${r.d}무`:''):'아직 안 해봤어요'}
 function catOn(){$('app').classList.toggle('withcat',opp==='navi'||opp==='trio');requestAnimationFrame(()=>{mPlace();setTimeout(mPlace,380)})}
-function hub(){cur=null;G=null;seq++;busy=false;$('gTitle').textContent='놀이';$('gBack').hidden=true;$('gPlay').hidden=true;$('gHub').hidden=false;score();
- const O=$('gOpp');O.innerHTML='';[['haru','하루랑'],['navi','나비랑'],['trio','셋이서']].forEach(([v,l])=>{const b=el('button',opp===v?'on':'',l);b.onclick=()=>{opp=v;hub()};O.appendChild(b)});
- const C=$('gCards');C.innerHTML='';GAMES.filter(g=>opp==='trio'?g.trio:g.duo).forEach(g=>{const b=el('button','gcard');b.innerHTML=`<svg viewBox="0 0 24 24">${g.icon}</svg>`;b.append(el('b',null,g.name),el('small',null,g.sub),el('span','rec',recTxt(g)));b.onclick=()=>start(g.id);C.appendChild(b)});
- $('gLine').textContent=opp==='trio'?'셋이서 뭐 할까요?':opp==='navi'?'나비랑 뭐 하고 놀까요?':'…뭐 하고 싶으세요?';av(opp==='trio'?'haru':opp,$('gAv'));if(opp==='navi')mascot('happy');catOn()}
-function start(id){cur=MOD[id];if(cur.dom&&opp!=='trio')opp='trio';$('gTitle').textContent=GAMES.find(g=>g.id===id).name;$('gBack').hidden=false;$('gHub').hidden=true;$('gPlay').hidden=false;
- $('gBoard').hidden=!!cur.dom;$('gStage').hidden=!cur.dom;$('gLvW').hidden=!!cur.dom;if(!cur.dom){const c=$('gBoard');c.style.height=c.clientWidth*cur.aspect+'px'}
- const LV=$('gLv');LV.innerHTML='';if(!cur.dom)[[0,'쉬움'],[1,'보통'],[2,'어려움']].forEach(([v,l])=>{const b=el('button',lv===v?'on':'',l);b.onclick=()=>{lv=v;S.gameLv=v;save();start(cur.id)};LV.appendChild(b)});
+function seg(id,list,curV,cb){const O=$(id);O.innerHTML='';list.forEach(([v,l])=>{const b=el('button',curV===v?'on':'',l);b.onclick=()=>cb(v);O.appendChild(b)})}
+function hub(){cur=null;G=null;seq++;busy=false;opp=mode==='trio'?'trio':duoOpp;$('gTitle').textContent='놀이';$('gBack').hidden=true;$('gPlay').hidden=true;$('gHub').hidden=false;score();
+ seg('gMode',[['duo','둘이서'],['trio','셋이서']],mode,v=>{mode=v;hub()});$('gOpp').hidden=mode!=='duo';
+ if(mode==='duo')seg('gOpp',[['haru','하루랑'],['navi','나비랑']],duoOpp,v=>{duoOpp=v;hub()});
+ const C=$('gCards');C.innerHTML='';GAMES.filter(g=>mode==='trio'?g.trio:g.duo).forEach(g=>{const b=el('button','gcard');b.innerHTML=`<svg viewBox="0 0 24 24">${g.icon}</svg>`;b.append(el('b',null,g.name),el('small',null,g.sub),el('span','rec',recTxt(g)));b.onclick=()=>start(g.id);C.appendChild(b)});
+ $('gLine').textContent=mode==='trio'?'셋이서 뭐 할까요? …칩은 봐주지 않아요.':opp==='navi'?'나비랑 뭐 하고 놀까요?':'…뭐 하고 싶으세요?';av(mode==='trio'?'haru':opp,$('gAv'));if(opp==='navi'||opp==='trio')mascot('happy');catOn()}
+function start(id){cur=MOD[id];$('gTitle').textContent=GAMES.find(g=>g.id===id).name;$('gBack').hidden=false;$('gHub').hidden=true;$('gPlay').hidden=false;
+ $('gBoard').hidden=!!cur.dom;$('gStage').hidden=!cur.dom;$('gLvW').hidden=!!cur.dom;$('gPlay').querySelector('.gbtns').hidden=!!cur.dom;if(!cur.dom){const c=$('gBoard');c.style.height=c.clientWidth*cur.aspect+'px'}
+ seg('gLv',cur.dom?[]:[[0,'쉬움'],[1,'보통'],[2,'어려움']],lv,v=>{lv=v;S.gameLv=v;save();start(cur.id)});
  fresh();catOn()}
-function fresh(){seq++;busy=false;cur.init();G.seq=seq;G.over=false;score();cur.draw();if(cur.dom){talk('haru',cur.id==='updown'?'제가 숫자 하나 정했어요. 1부터 100 사이. 먼저 말해보세요.':cur.id==='dice'?'세 번 먼저 이기면 끝이에요.':'세 판 먼저 이기는 쪽이 이겨요.','base');if(opp==='trio')mascot('happy')}else talk(opp,'start')}
-function open(){if(opening)return;opp=S.gameOpp||(pub?'navi':'haru');lv=S.gameLv!=null?S.gameLv:1;$('app').classList.add('gaming');$('game').classList.add('open');hub()}
-function close(){seq++;busy=false;S.gameOpp=opp==='trio'?S.gameOpp:opp;save();$('app').classList.remove('gaming','withcat');$('game').classList.remove('open');if(!pub)setMood(idle())}
+const INTRO={blackjack:{haru:'제가 딜러예요. 걸 칩을 고르고 딜을 누르세요.',navi:'제가 딜러할게요~ 칩 고르고 딜!'},holdem:{haru:'블라인드 10, 20이에요. …시작할까요?',navi:'포커다! 저 잘해요~'},chinchiro:{haru:'세 개 굴려서 족보 싸움이에요. 걸 칩부터 고르세요.',navi:'주사위 놀이! 칩 고르고 시작~'}};
+function fresh(){seq++;busy=false;cur.init();G.seq=seq;G.over=false;score();cur.draw();
+ if(cur.dom){const sp=opp==='trio'?'haru':opp;talk(sp,INTRO[cur.id][sp],'base');if(opp==='trio')mascot('happy')}else talk(opp,'start')}
+function open(){if(opening)return;mode=S.gameMode||'duo';duoOpp=S.gameOpp||(pub?'navi':'haru');lv=S.gameLv!=null?S.gameLv:1;rec();$('app').classList.add('gaming');$('game').classList.add('open');hub()}
+function close(){seq++;busy=false;S.gameMode=mode;S.gameOpp=duoOpp;save();$('app').classList.remove('gaming','withcat');$('game').classList.remove('open');if(!pub)setMood(idle())}
+const MOD={chess:CH,omok:OM,blackjack:BJ,holdem:HE,chinchiro:CC};
 $('gBack').onclick=hub;$('gClose').onclick=close;$('gNew').onclick=()=>cur&&fresh();
 $('gBoard').addEventListener('click',e=>{if(!cur||cur.dom||!G||G.over||busy)return;const r=e.currentTarget.getBoundingClientRect();cur.tap(e.clientX-r.left,e.clientY-r.top,r.width)});
 document.querySelectorAll('nav button[data-g]').forEach(b=>b.onclick=open);
 window.addEventListener('resize',()=>{if(!$('game').classList.contains('open'))return;if(cur&&!cur.dom){const c=$('gBoard');c.style.height=c.clientWidth*cur.aspect+'px';cur.draw()}mPlace()});
 window.gameOpen=open;
+if(window.ResizeObserver)new ResizeObserver(()=>{if($('game').classList.contains('open'))mPlace()}).observe($('game'));
 })();

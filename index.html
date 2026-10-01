@@ -87,7 +87,7 @@ nav img{width:40px;height:40px}
 .app.public .pub{transform:none;pointer-events:auto}
 .pubbg{position:absolute;inset:0;background:center/cover no-repeat}
 .pubbg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,13,.35),transparent 25%,transparent 50%,rgba(12,12,13,.9) 85%)}
-.boxw{position:absolute;left:auto;right:max(5vw,calc(50% - 205px));margin:0;top:calc(96px + min(32vw,150px));width:min(40vw,205px);aspect-ratio:900/796;overflow:visible}
+.boxw{position:absolute;left:auto;right:max(5vw,calc(50% - 205px));margin:0;top:calc(64px + min(26vw,120px));width:min(40vw,205px);aspect-ratio:900/796;overflow:visible}
 #boxC,#boxO{position:absolute;left:0;bottom:0;width:100%;height:auto;-webkit-user-drag:none;pointer-events:none}
 #boxO{opacity:0}#boxC,#boxO{transition:opacity .35s ease}
 #boxC{filter:drop-shadow(0 18px 22px rgba(0,0,0,.55))}
@@ -201,15 +201,20 @@ details.add[open] summary:before{transform:rotate(45deg)}details.add:not([open])
 #gBoard{width:min(100%,420px);aspect-ratio:auto;border-radius:12px;touch-action:manipulation;box-shadow:0 10px 30px rgba(0,0,0,.55);display:block}
 #gStage{width:100%;display:flex;flex-direction:column;gap:12px}
 .gbtns{display:flex;gap:8px;align-items:center;width:100%}#gLvW{flex:1}#gLvW[hidden]+#gNew{flex:1}#gLvW .seg{margin:0}
-.seats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.seat{border:1px solid rgba(242,240,236,.09);border-radius:16px;padding:12px 6px 10px;text-align:center;background:rgba(242,240,236,.03);transition:border-color .2s,box-shadow .2s}
-.seat.win{border-color:rgba(255,236,190,.55);box-shadow:0 0 22px rgba(255,236,190,.1)}
-.seat .gav{width:38px;height:38px;margin:0 auto 6px}.seat .nm{font-size:12px;color:var(--mute)}
-.seat .v{font-family:"Noto Serif KR";font-size:21px;margin-top:6px;min-height:34px;display:grid;place-items:center}.seat .pt{font-size:11px;color:var(--mute);min-height:15px}
-.gpad{display:flex;gap:8px}.gpad .btn{flex:1}.gpad .f{flex:1}
-.urange{font-family:"Noto Serif KR";font-size:30px;letter-spacing:.08em;text-align:center;padding:4px 0}
-.dice{display:inline-flex;gap:4px}.die{width:24px;height:24px;border-radius:6px;background:linear-gradient(145deg,#fff,#e4e0ec);display:inline-grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:3px;box-shadow:0 2px 6px rgba(0,0,0,.4)}
-.die i{width:4px;height:4px;border-radius:50%;background:#18181b;place-self:center;visibility:hidden}.die i.on{visibility:visible}
+.dice{display:inline-flex;gap:6px}.die{width:30px;height:30px;border-radius:7px;background:linear-gradient(145deg,#fff,#e4e0ec);display:inline-grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:3px;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.die i{width:5px;height:5px;border-radius:50%;background:#18181b;place-self:center;visibility:hidden}.die i.on{visibility:visible}
+.prow{border:1px solid rgba(242,240,236,.08);border-radius:14px;padding:10px 12px;background:rgba(242,240,236,.03);display:flex;flex-direction:column;gap:8px;transition:border-color .2s,opacity .2s}
+.prow.on{border-color:rgba(214,236,238,.45);background:rgba(214,236,238,.04)}.prow.out{opacity:.45}
+.ph{display:flex;align-items:center;gap:8px}.ph .gav{width:26px;height:26px}.pn{font-size:13px;flex:1}.pchip{font-size:12px;color:var(--mute);display:flex;align-items:center;gap:5px}
+.pchip:before{content:"";width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#e8dcc8 60%,#b7a98f);box-shadow:0 0 0 1.5px rgba(232,220,200,.35)}
+.psub{font-size:12px;color:var(--mute)}.psub:empty{display:none}
+.pcs{display:flex;gap:6px;flex-wrap:wrap;align-items:center;min-height:56px}.pcs.ghost{color:var(--mute);font-size:12px}
+.pc{width:40px;height:56px;border-radius:7px;background:linear-gradient(160deg,#fbfaf7,#e7e3ec);color:#1b1b1f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:0 3px 8px rgba(0,0,0,.45);font-family:"Noto Serif KR",serif;line-height:1;flex:none}
+.pc b{font-size:16px;font-weight:600}.pc i{font-style:normal;font-size:17px}.pc.red{color:#a84f60}
+.pc.back{background:repeating-linear-gradient(45deg,#2c2a35 0 5px,#211f29 5px 10px);border:1px solid rgba(232,228,240,.3)}
+.pc.slot{background:rgba(242,240,236,.03);box-shadow:none;border:1px dashed rgba(242,240,236,.14)}
+.pboard{display:flex;flex-direction:column;align-items:center;gap:8px;padding:4px 0}.pboard .pcs{justify-content:center;flex-wrap:nowrap;gap:5px}.ppot{font-size:13px;color:var(--mute);letter-spacing:.04em}
+#gStage{gap:10px}.gpad{display:flex;gap:8px}.gpad .btn{flex:1}.gpad .f{flex:1}.popps{display:grid;grid-template-columns:1fr 1fr;gap:8px}.popps .prow{padding:9px 10px}.popps .pc{width:34px;height:48px}.popps .pcs{min-height:48px}.gpad.col{flex-direction:column}.gpad.col>.btn{flex:none;width:100%}.seg.bets{margin:0}
 .app.gaming.withcat #mascot{display:block}.app.gaming .pub .bfy{opacity:.35!important}
 @media (prefers-reduced-motion:reduce){.body,.fly img,.spark{animation:none}}
 </style></head><body>
@@ -228,7 +233,7 @@ details.add[open] summary:before{transform:rotate(45deg)}details.add:not([open])
  <div id="mascot" class="cat"></div><div class="game" id="game">
   <div class="ghead"><button class="gback" id="gBack" aria-label="뒤로" hidden><svg viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></svg></button><b id="gTitle">놀이</b><span class="gsc" id="gScore"></span><button class="gx" id="gClose" aria-label="닫기"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></button></div>
   <div class="gtalk"><span class="gav" id="gAv"></span><span class="gline" id="gLine"></span></div>
-  <div id="gHub" class="gview"><div class="seg" id="gOpp"></div><div class="gcards" id="gCards"></div></div>
+  <div id="gHub" class="gview"><div class="seg" id="gMode"></div><div class="seg" id="gOpp"></div><div class="gcards" id="gCards"></div></div>
   <div id="gPlay" class="gview" hidden><canvas id="gBoard"></canvas><div id="gStage" hidden></div>
    <div class="gbtns"><div id="gLvW"><div class="seg" id="gLv"></div></div><button class="btn ghost sm" id="gNew">새 게임</button></div></div>
  </div>
@@ -461,22 +466,12 @@ setPub(true);
 // ---------- cat mascot 나비 (frames + eyelid blink + walking) ----------
 const KF=['base','half','closed','happy','surprised','think','sad','pleased','wave','stone','look','sleep','walk1','walk2','walk3','walk4','crouch','leap','land','sitside','stretch','yawn','groom','reach','j1','j2','j3','j4','j5','j6','j7','j8','w1','w2','w3','w4','t1','t2','t3','t4','h1','h2','h3','h4','s1','s2','s3','s4','wk1','wk2','wk3','wk4','wk5','wk6','wk7','wk8','sd1','sd2','sd3','sd4'];
 const SIDE=new Set(['walk1','walk2','walk3','walk4','crouch','leap','land','sitside','stretch','reach','j1','j2','j3','j4','j5','j6','j7','j8','s1','s2','s3','s4','wk1','wk2','wk3','wk4','wk5','wk6','wk7','wk8','sd1','sd2']);
-// 고양이 그림을 배경 사진에 맞춘다: 갈색 기운 빼기(꼬리 연보라는 그대로), 왼쪽 위 창문 빛, 털 가장자리 살짝 부드럽게
-function catGrade(img,x0,y0,w,h,FW,FH){try{w=Math.round(w);h=Math.round(h);const o=document.createElement('canvas');o.width=w;o.height=h;const x=o.getContext('2d',{willReadFrequently:true});x.drawImage(img,0,0,w,h);
- const id=x.getImageData(0,0,w,h),d=id.data,n=w*h,f=new Float32Array(n*4);
- for(let p=0;p<n;p++){const j=p*4,a=d[j+3]/255;let r=d[j],g=d[j+1],b=d[j+2];
-  const wm=Math.min(1,Math.max(0,(r-b)/12))*.85*Math.min(1,Math.max(0,1-(b-g)/10)),m=(r+g+b)/3;r+=(m-r)*wm;g+=(m-g)*wm;b+=(m-b)*wm;
-  const L=1+.3*(1-((x0+p%w)/FW*.6+(y0+(p/w|0))/FH));f[j]=r*L*a;f[j+1]=g*L*a;f[j+2]=b*L*a;f[j+3]=a}
- const t=new Float32Array(n*4);const pass=(src,dst,dx,dy)=>{for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){const p=(yy*w+xx)*4,xa=Math.max(0,xx-dx),xb=Math.min(w-1,xx+dx),ya=Math.max(0,yy-dy),yb=Math.min(h-1,yy+dy),pa=(ya*w+xa)*4,pb=(yb*w+xb)*4;
-  for(let ch=0;ch<4;ch++)dst[p+ch]=(src[pa+ch]+2*src[p+ch]+src[pb+ch])/4}};
- pass(f,t,1,0);pass(t,f,0,1);
- for(let p=0;p<n;p++){const j=p*4,a=f[j+3];d[j+3]=Math.round(a*255);if(a>0){d[j]=Math.min(255,f[j]/a);d[j+1]=Math.min(255,f[j+1]/a);d[j+2]=Math.min(255,f[j+2]/a)}}
- x.putImageData(id,0,0);return o}catch(e){return img}}
+// 고양이 그림(assets/k_*)은 미리 배경에 맞춰 색·빛·밝기를 입혀 둔 파일이다(원본은 git 기록 d0f8bfa 이전)
 function makeCat(box){box.innerHTML='';const im={};const sh=document.createElement('div');sh.className='csh';box.appendChild(sh);const body=document.createElement('div');body.className='cbody';box.appendChild(body);
  const cv=document.createElement('canvas');cv.className='ccv';cv.width=A.k_dim[0]*2;cv.height=A.k_dim[1]*2;body.appendChild(cv);const ctx=cv.getContext('2d');let painted=false;
  const bl=new Image();if(A.k_blink){bl.src=A.k_blink;bl.decode&&bl.decode().catch(()=>{})}
  KF.forEach(k=>{if(!A['k_'+k])return;const i=new Image();i.src=A['k_'+k];i.decode&&i.decode().catch(()=>{});im[k]=i});
- const pr={};const prep=(k,i,x0,y0,w,h)=>{if(pr[k])return pr[k];pr[k]=catGrade(i,x0,y0,w,h,cv.width,cv.height);return pr[k]};
+ const prep=(k,i)=>i;
  const paint=()=>{if(!ctx)return;const k=im[c.cur]?c.cur:'base',i=im[k];if(!i||!i.complete||!i.naturalWidth){if(i){i.addEventListener('load',paint,{once:true});i.decode&&i.decode().then(paint).catch(()=>{})}return}
   const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(prep(k,i,0,0,W,H),0,0,W,H);
   if(lid&&c.cur==='base'&&bl.complete&&bl.naturalWidth){const p=A.k_blinkp,bx=p[0]*W,by=p[1]*H,bw=p[2]*W,bh=p[3]*H;ctx.globalAlpha=lid==='h'?.6:1;ctx.drawImage(prep('_blink',bl,bx,by,bw,bh),bx,by,bw,bh);ctx.globalAlpha=1}if(!painted){painted=true;box.classList.add('drawn')}
@@ -487,8 +482,7 @@ function makeCat(box){box.innerHTML='';const im={};const sh=document.createEleme
    body.style.transform=SIDE.has(k)&&c.face<0?'scaleX(-1)':'';if(c.onshow)c.onshow(k);if(ms>0)c.hold=setTimeout(()=>c.show(c.rest||'base'),ms)}};
  (function blink(){if(c.cur==='base'&&!document.hidden){setLid('h');setTimeout(()=>{if(c.cur==='base')setLid('c')},60);setTimeout(()=>{if(c.cur==='base')setLid('h')},170);setTimeout(()=>setLid(''),230)}
   setTimeout(blink,2600+Math.random()*3500)})();
- // 자주 쓰는 자세는 미리 색을 입혀둔다(처음 바뀔 때 끊기지 않게)
- c.warm=list=>{let i=0;const nx=()=>{while(i<list.length){const k=list[i],m=im[k];if(!m||(m.complete&&!m.naturalWidth)){i++;continue}if(!m.complete){setTimeout(nx,400);return}i++;prep(k,m,0,0,cv.width,cv.height);setTimeout(nx,150);return}};setTimeout(nx,600)};
+ c.warm=()=>{};
  c.show('base');return c}
 const CATMAP={base:'base',smile:'happy',nod:'happy',pleased:'pleased',surprised:'surprised',think:'think',side:'think',sad:'sad',worry:'sad',stone:'stone',wave:'wave'};
 let mCat=null,bCat=null,catIdle=Date.now();
@@ -496,12 +490,12 @@ function mascot(ex){if(!mCat){mCat=makeCat($('mascot'));mCat.warm(['happy','ston
 // 오목할 때 나비는 게임판 위쪽 테두리에 앉는다(판을 가리지 않게)
 function mPlace(){const m=$('mascot'),gm=$('game'),app=$('app');if(!m||!gm)return;const H=app.clientHeight,top=H-gm.offsetHeight;
  const hb=document.querySelector('header')?document.querySelector('header').getBoundingClientRect().bottom-app.getBoundingClientRect().top:80;
- const h=Math.max(64,Math.min(140,top-hb-2)),w=h*710/574,fb=A.k_fbase||.95;
+ const room=top-hb-2;m.style.visibility=room<58?'hidden':'';const h=Math.max(58,Math.min(140,room)),w=h*710/574,fb=A.k_fbase||.95;
  [['height',h+'px'],['width',w+'px'],['margin-left',-w/2+'px'],['top',(top-h*fb+4)+'px']].forEach(([p,v])=>m.style.setProperty(p,v,'important'))}
 // walker on the desk
 const WK={x:0,y:0,on:false,busy:false,started:false,t0:0};
 function wGeo(){const P=$('pub').getBoundingClientRect(),B=$('boxC').getBoundingClientRect();const W=Math.min(P.width,(window.visualViewport?visualViewport.width:innerWidth)-Math.max(0,P.left)),cw=$('bcat').offsetWidth,ch=cw*A.k_dim[1]/A.k_dim[0];
- return{W,cw,ch,vw:cw*.4,m:cw*.5,floor:B.bottom-P.top-B.height*.05,lidY:B.top-P.top+B.height*.4,bl:B.left-P.left,br:B.right-P.left,bw:B.width}}
+ return{W,cw,ch,vw:cw*.4,m:cw*.5,floor:B.bottom-P.top-B.height*.12,lidY:B.top-P.top+B.height*.4,bl:B.left-P.left,br:B.right-P.left,bw:B.width}}
 function wPlace(){if(!bCat)return;const g=wGeo(),fb=A.k_fbase||.96;if(!WK.air)WK.y=WK.on?g.lidY:g.floor;WK.x=Math.min(Math.max(WK.x,g.m),g.W-g.m);$('bcat').style.transform=`translate(${WK.x-g.cw/2}px,${WK.y-g.ch*fb}px)`;
  const base=WK.on?g.lidY:g.floor,up=Math.max(0,base-WK.y);if(bCat.sh){bCat.sh.style.opacity=Math.max(0,1-up/(g.ch*.5));bCat.sh.style.transform=`translateY(${up/g.ch*100/0.09}%) scale(${Math.max(.5,1-up/(g.ch*.8))})`}}
 function wFloorOrBox(){const g=wGeo();if(WK.on){WK.x=Math.min(Math.max(WK.x,g.bl+g.bw*.22),g.br-g.bw*.22);WK.y=g.lidY}else WK.y=g.floor;wPlace()}
