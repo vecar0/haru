@@ -7,6 +7,13 @@ const GAMES=[
  {id:'holdem',name:'홀덤',sub:'텍사스 홀덤 포커',duo:true,trio:true,bet:true,icon:'<path d="M12 4.5c3 3.5 6.5 5.3 6.5 8.4a3.3 3.3 0 0 1-5.6 2.3L13.6 19h-3.2l.7-3.8a3.3 3.3 0 0 1-5.6-2.3c0-3.1 3.5-4.9 6.5-8.4z"/>'},
  {id:'yacht',name:'요트',sub:'주사위 다섯 개로 점수표 채우기',duo:true,trio:true,bet:true,icon:'<rect x="3.5" y="9" width="9" height="9" rx="2"/><rect x="11.5" y="4.5" width="9" height="9" rx="2"/><circle cx="8" cy="13.5" r=".9"/><circle cx="14" cy="7" r=".9"/><circle cx="18" cy="11" r=".9"/>'},
  {id:'mahjong',name:'마작',sub:'몸통 넷 + 머리 하나',duo:true,trio:true,bet:true,icon:'<rect x="6.5" y="3.5" width="11" height="17" rx="2"/><path d="M10 8h4M12 8v8M9.5 12h5"/>'}];
+const HELP={
+ chess:['<b>목표</b> 상대 왕(♚)이 더 이상 피할 곳이 없게 만들면 이겨요(체크메이트).','<b>하는 법</b> 내 말(흰색)을 누르면 갈 수 있는 칸이 점으로 보여요. 점을 누르면 이동해요.','<b>말 움직임</b> 폰: 앞으로 1칸(처음엔 2칸), 잡을 땐 대각선 · 나이트(말 머리): L자로 뛰어넘기 · 비숍: 대각선 · 룩(성): 가로세로 · 퀸: 가로세로+대각선 · 킹: 아무 방향 1칸','폰이 끝까지 가면 퀸이 돼요.'],
+ omok:['<b>목표</b> 같은 색 돌 다섯 개를 가로·세로·대각선으로 먼저 이으면 이겨요.','빈 칸을 누르면 돌을 놓아요. 나는 검은 돌이에요.'],
+ blackjack:['<b>목표</b> 카드 합이 <span class="k">21에 가까운 쪽</span>이 이겨요. 21을 넘으면 바로 져요(버스트).','<b>숫자</b> 2~10은 그대로, J·Q·K는 10, A는 1 또는 11(유리한 쪽으로 자동).','<b>버튼</b> 히트: 한 장 더 받기 · 스탠드: 그만 받기 · 더블: 건 칩을 두 배로 하고 딱 한 장만 더','딜러는 16 이하면 무조건 더 받고 17 이상이면 멈춰요. 처음 두 장이 21이면 블랙잭, 1.5배를 받아요.','아래 <span class="k">추천</span>을 따라 해보면 금방 익숙해져요.'],
+ holdem:['<b>목표</b> 내 카드 2장 + 가운데 카드 5장 중에서 가장 좋은 5장으로 족보를 겨뤄요.','<b>순서</b> 카드 2장 받기 → 가운데 3장 → 1장 → 1장. 매번 칩을 걸지 정해요.','<b>버튼</b> 체크: 그냥 넘기기 · 콜: 상대만큼 걸기 · 레이즈: 더 걸기 · 폴드: 포기(이미 건 칩은 잃어요)','<b>족보</b>(강한 순) 스트레이트 플러시 › 포카드 › 풀하우스 › 플러시(같은 무늬 5장) › 스트레이트(연속 5장) › 트리플 › 투페어 › 원페어 › 하이카드','아래 <span class="k">이길 확률</span>을 보고 콜·폴드를 정하면 돼요.'],
+ yacht:['<b>목표</b> 12칸 점수표를 채워서 총점이 가장 높으면 이겨요.','<b>하는 법</b> 굴리기(최대 3번) → 남길 주사위를 누르면 고정 → 점수표의 빈칸(미리 보이는 숫자)을 하나 눌러 기록.','<b>칸</b> 1~6: 그 숫자 눈의 합 · 초이스: 전부 합 · 포카드: 같은 눈 4개면 전부 합 · 풀하우스: 3개+2개면 전부 합 · 스몰 스트레이트: 4개 연속 15점 · 라지 스트레이트: 5개 연속 30점 · 요트: 5개 모두 같으면 50점','1~6 칸 합이 63 이상이면 보너스 35점. <span class="k">노란 칸</span>이 추천이에요.'],
+ mahjong:['<b>목표</b> 손패 14장으로 <span class="k">몸통 4개 + 머리 1개</span>를 먼저 만들면 이겨요.','<b>몸통</b> 같은 패 3장(예: 5萬 5萬 5萬) 또는 같은 종류 연속 3장(예: 3筒 4筒 5筒) · <b>머리</b> 같은 패 2장. 같은 패 2장씩 7쌍(치또이츠)도 돼요.','<b>패 종류</b> 萬·筒·索은 숫자 패(연속 가능) · 東南西北白發中은 글자 패(연속 안 됨, 3장 모으기만).','<b>하는 법</b> 내 차례에 1장 받고, 필요 없는 1장을 눌러 두 번 누르면 버려요. 내가 뽑아서 완성하면 쯔모, 남이 버린 패로 완성하면 론!','<span class="k">노란 테두리 패</span>가 버리기 추천이에요. 아래에 완성까지 얼마나 남았는지도 보여요.']};
 const NAME={haru:'하루',navi:'나비'};
 // 대사: 하루는 쿨하고 짧게, 나비는 귀엽게
 const L={
@@ -144,7 +151,10 @@ const BJ={id:'blackjack',dom:true,
   if(G.phase==='bet'||G.phase==='done'){pad.appendChild(betBar([10,50,100,200],()=>this.draw()));const b=el('button','btn',G.phase==='done'?'다음 판':'딜');b.onclick=()=>this.deal();pad.appendChild(b)}
   else if(G.turn==='me'){const r=el('div','gpad');const h=G.P.me;[['히트',()=>this.hit()],['스탠드',()=>this.stand()]].forEach(([l,f])=>{const b=el('button','btn',l);b.onclick=f;r.appendChild(b)});
    if(h.c.length===2&&coin('me')>=h.bet*2){const b=el('button','btn ghost','더블');b.onclick=()=>this.dbl();r.appendChild(b)}pad.appendChild(r)}
-  S0.appendChild(pad)},
+  S0.appendChild(pad);$('gTip').textContent=G.phase==='play'&&G.turn==='me'?this.tip(G.P.me.c):G.phase==='bet'?'걸 칩을 고르고 딜을 누르세요':''},
+ tip(c){const v=bjv(c),up=G.dl[0].r>=11&&G.dl[0].r<=13?10:G.dl[0].r===14?11:G.dl[0].r,soft=c.some(x=>x.r===14)&&c.reduce((a,x)=>a+(x.r>=11&&x.r<=13?10:x.r===14?1:x.r),0)+10===v;
+  if(v<=11)return`추천: 히트 — ${v}이면 더 받아도 21을 안 넘어요`;if(soft&&v<=17)return'추천: 히트 — A를 1로 바꿀 수 있어서 안전해요';if(v>=17)return`추천: 스탠드 — ${v}면 충분히 높아요`;
+  if(up<=6)return`추천: 스탠드 — 딜러 카드(${up})가 약해서 딜러가 넘기 쉬워요`;return`추천: 히트 — 딜러 카드(${up})가 강해서 ${v}로는 지기 쉬워요`},
  async deal(){if(busy)return;refill(['me',...this.players(),this.dealer()]);if(G.bet>coin('me'))G.bet=Math.max(10,Math.floor(coin('me')/10)*10);
   G.d=deck();G.dl=[G.d.pop(),G.d.pop()];G.P={};G.msg={};this.players().forEach(w=>{const bet=w==='me'?G.bet:Math.min(coin(w),pick([20,50,50,100]));G.P[w]={c:[G.d.pop(),G.d.pop()],bet,done:false}});
   G.phase='play';talk(this.dealer(),'deal');
@@ -189,7 +199,10 @@ const HE={id:'holdem',dom:true,
   else if(G.turn==='me'){const mx=Math.max(...G.P.map(p=>p.bet)),need=mx-me.bet,step=G.street<2?20:40;
    const f=el('button','btn ghost','폴드');f.onclick=()=>this.act('fold');const c=el('button','btn ghost',need?`콜 ${fmtC(Math.min(need,coin('me')))}`:'체크');c.onclick=()=>this.act('call');pad.append(f,c);
    if(G.raises<4&&coin('me')>need){const r=el('button','btn',`레이즈 +${step}`);r.onclick=()=>this.act('raise');pad.appendChild(r)}}
-  S0.appendChild(pad)},
+  S0.appendChild(pad);$('gTip').textContent=G.turn==='me'&&G.phase==='play'?this.tip(me):G.phase==='idle'?'시작을 누르면 카드 2장을 받아요':''},
+ tip(me){const key=G.street+'|'+G.bd.length+'|'+me.h.map(c=>c.r*4+c.s).join();if(G.tipK!==key){G.tipK=key;G.eq=equity(me.h,G.bd.slice(0,this.shown()),this.alive().length-1)}
+  const mx=Math.max(...G.P.map(p=>p.bet)),need=mx-me.bet,pot=G.pot+G.P.reduce((a,p)=>a+p.bet,0),e=Math.round(G.eq*100),odds=need/(pot+need||1);
+  return`이길 확률 약 ${e}% · `+(G.eq>.62?'강한 편이에요. 레이즈해볼 만해요':need===0?'체크하고 다음 카드를 봐도 돼요':G.eq>odds+.05?'콜할 만해요':'접는(폴드) 게 나아요')},
  shown(){return[0,3,4,5][G.street]||0},
  hand(){if(busy)return;const ids=who();refill(ids);const n=ids.length;G.btn=(G.btn+1)%n;G.d=deck();G.P=ids.map(id=>({id,h:[G.d.pop(),G.d.pop()],bet:0,put:0,fold:false,allin:false,acted:false}));G.bd=[G.d.pop(),G.d.pop(),G.d.pop(),G.d.pop(),G.d.pop()];G.pot=0;G.log={};
   G.street=0;G.raises=0;G.phase='play';const sb=n===2?G.btn:(G.btn+1)%n,bb=(sb+1)%n;this.pay(G.P[sb],10);this.pay(G.P[bb],20);G.log[G.P[sb].id]='SB';G.log[G.P[bb].id]='BB';G.cur=(bb+1)%n;this.loop()},
@@ -237,13 +250,13 @@ const YT={id:'yacht',dom:true,
   const dr=el('div','ydice');G.d.forEach((v,i)=>{const b=el('button','ydie'+(G.hold[i]?' hold':''));b.appendChild(die(v));b.disabled=!me||!G.rolls||busy;b.onclick=()=>{G.hold[i]^=1;this.draw()};dr.appendChild(b)});S0.appendChild(dr);
   const tb=el('table','ytab');const hr=document.createElement('tr');hr.appendChild(el('th',null,G.phase==='play'?`${G.rnd+1} / 12`:''));ids.forEach(w=>{const th=el('th',G.turn===w?'on':'');th.appendChild(av(w));hr.appendChild(th)});tb.appendChild(hr);
   const line=(lab,f,cls)=>{const tr=el('tr',cls||'');tr.appendChild(el('td','yl',lab));ids.forEach(w=>tr.appendChild(f(w)));tb.appendChild(tr)};
-  YC.forEach(([c,l],i)=>{line(l,w=>{const s=G.sc[w]||{},td=el('td','');if(s[c]!=null)td.textContent=s[c];else if(w==='me'&&me&&G.rolls){td.textContent=ysc(c,G.d);td.className='pv';td.onclick=()=>this.put('me',c)}return td},i===5?'ysep':i===6?'ysep2':'');
+  const bestC=me&&G.rolls?this.pick('me'):null;YC.forEach(([c,l],i)=>{line(l,w=>{const s=G.sc[w]||{},td=el('td','');if(s[c]!=null)td.textContent=s[c];else if(w==='me'&&me&&G.rolls){td.textContent=ysc(c,G.d);td.className='pv'+(c===bestC?' best':'');td.onclick=()=>this.put('me',c)}return td},i===5?'ysep':i===6?'ysep2':'');
    if(i===5)line('보너스',w=>el('td','yb',yup(G.sc[w]||{})>=63?'+35':`${yup(G.sc[w]||{})}/63`),'ybon')});
   line('합계',w=>el('td','',String(ytot(G.sc[w]||{}))),'ysum');S0.appendChild(tb);
   const pad=el('div','gpad col');
   if(G.phase!=='play'){pad.appendChild(betBar([10,50,100,200],()=>this.draw()));const b=el('button','btn',G.phase==='done'?'다시 하기':'시작');b.onclick=()=>this.start();pad.appendChild(b)}
-  else if(me){const b=el('button','btn',G.rolls<3?`굴리기 ${G.rolls}/3`:'점수 칸을 골라주세요');b.disabled=G.rolls>=3||busy;b.onclick=()=>this.roll();pad.appendChild(b)}
-  S0.appendChild(pad)},
+  else if(me){const r=el('div','gpad');if(G.rolls>0&&G.rolls<3){const k=el('button','btn ghost','추천대로 고정');k.onclick=()=>{G.hold=this.keep('me');this.draw()};r.appendChild(k)}const b=el('button','btn',G.rolls<3?`굴리기 ${G.rolls}/3`:'점수 칸을 골라주세요');b.disabled=G.rolls>=3||busy;b.onclick=()=>this.roll();r.appendChild(b);pad.appendChild(r)}
+  S0.appendChild(pad);$('gTip').textContent=me?(G.rolls?`노란 칸 추천: ${YC.find(x=>x[0]===bestC)[1]} ${ysc(bestC,G.d)}점 · 다시 굴리려면 남길 주사위를 누르세요`:'굴리기를 눌러 시작하세요'):G.phase==='bet'?'걸 칩을 고르고 시작을 누르세요':''},
  start(){if(busy)return;refill(who());if(G.bet>coin('me'))G.bet=Math.max(10,Math.floor(coin('me')/10)*10);G.sc={};who().forEach(w=>G.sc[w]={});G.rnd=0;G.phase='play';G.order=who();this.begin('me');talk(opp==='trio'?'haru':opp,opp==='navi'?'요트! 저부터… 아니 먼저 굴려요~':'열두 칸을 채우면 끝이에요. 먼저 굴리세요.','base')},
  begin(w){G.turn=w;G.rolls=0;G.hold=[0,0,0,0,0];this.draw();if(w!=='me')this.ai(w)},
  async roll(){if(busy||G.rolls>=3)return;busy=true;const t0=Date.now();while(Date.now()-t0<450){G.d=G.d.map((v,i)=>G.hold[i]?v:1+Math.random()*6|0);this.draw();await sleep(60);if(!alive())return}
@@ -284,6 +297,9 @@ function mjYaku(h,tsumo){const c=mjc(h),y=[];let han=1;y.push('화료');if(tsumo
  if(suits.size===1&&!hon){han+=5;y.push('청일색')}else if(suits.size===1&&hon){han+=2;y.push('혼일색')}else if(suits.size===0){han+=5;y.push('자일색')}
  const pairs=c.filter(x=>x===2).length;if(pairs===7){han+=2;y.push('치또이츠')}else if(c.every(x=>x===0||x===3||x===2)&&pairs===1){han+=2;y.push('또이또이')}
  [31,32,33].forEach(t=>{if(c[t]>=3){han++;y.push(MJN[t-27]+' 삼원패')}});return{han,y}}
+function mjBest(h,smart){const c=mjc(h),cand=[...new Set(h)];let best=null,bs=99,bu=-1;
+ for(const t of cand){c[t]--;const s=mjShanten(c);let u=0;if(smart&&s<=bs){for(let x=0;x<34;x++){if(c[x]>=4||(G.sanma&&x>=1&&x<=7))continue;c[x]++;if(mjShanten(c)<s)u+=4-c[x]+1;c[x]--}}else u=Math.random()*3+(t>=27?2:0);
+  c[t]++;if(s<bs||(s===bs&&u>bu)){bs=s;bu=u;best=t}}return{t:best,s:bs}}
 const MJ={id:'mahjong',dom:true,
  init(){G={bet:G&&G.bet||10,phase:'bet',H:{},P:{},wall:[],turn:null,sel:-1,last:null,res:null}},
  draw(){const S0=$('gStage');S0.innerHTML='';const ids=who(),play=G.phase!=='bet';
@@ -296,13 +312,14 @@ const MJ={id:'mahjong',dom:true,
   const meRow=row('me',mine,G.res&&G.res.w==='me'?G.res.txt:'',G.turn==='me'?'on':'');S0.appendChild(meRow);
   if(play&&G.H.me){const hr=el('div','mjh');const h=G.H.me,n=h.length,drawn=n%3===2?G.drawn:null;let skip=drawn!=null;
    const order=h.map((t,i)=>i).filter(i=>!(skip&&i===h.lastIndexOf(drawn)&&(skip=false,true)));order.sort((a,b)=>h[a]-h[b]);if(drawn!=null)order.push(h.lastIndexOf(drawn));
-   order.forEach((i,k)=>{const b=mjEl(h[i],(G.sel===i?'sel':'')+(drawn!=null&&k===order.length-1?' drawn':''));b.onclick=()=>this.tap(i);hr.appendChild(b)});meRow.appendChild(hr)}
+   const tipT=G.turn==='me'&&G.phase==='play'&&n%3===2&&!mjWin(h)?(G.tipK===h.join()?G.tipT:(G.tipK=h.join(),G.tipR=mjBest(h,true),G.tipT=G.tipR.t)):null;let tipDone=false;
+   order.forEach((i,k)=>{const isTip=tipT!=null&&!tipDone&&h[i]===tipT&&(tipDone=true);const b=mjEl(h[i],(G.sel===i?'sel':'')+(isTip?' tip':'')+(drawn!=null&&k===order.length-1?' drawn':''));b.onclick=()=>this.tap(i);hr.appendChild(b)});meRow.appendChild(hr)}
   const pad=el('div','gpad col');
   if(G.phase==='bet'||G.phase==='done'){pad.appendChild(betBar([10,20,50,100],()=>this.draw()));const b=el('button','btn',G.phase==='done'?'다음 판':'시작');b.onclick=()=>this.start();pad.appendChild(b)}
   else if(G.phase==='ron'){const r=el('div','gpad');const a=el('button','btn','론!');a.onclick=()=>this.win('me',false,G.last.w);const p=el('button','btn ghost','넘기기');p.onclick=()=>{G.phase='play';this.after(G.last.w)};r.append(a,p);pad.appendChild(r)}
   else if(G.turn==='me'){const r=el('div','gpad');if(mjWin(G.H.me)){const t=el('button','btn','쯔모!');t.onclick=()=>this.win('me',true);r.appendChild(t)}
    const d=el('button','btn ghost',G.sel>=0?'이 패 버리기':'버릴 패를 누르세요');d.disabled=G.sel<0;d.onclick=()=>this.discard('me',G.sel);r.appendChild(d);pad.appendChild(r)}
-  S0.appendChild(pad)},
+  S0.appendChild(pad);let tp='';if(G.phase==='ron')tp='남이 버린 패로 완성됐어요! 론을 누르면 이겨요';else if(G.turn==='me'&&G.phase==='play'&&G.H.me){if(mjWin(G.H.me))tp='완성! 쯔모를 누르면 이겨요';else{const s=G.tipR&&G.tipK===G.H.me.join()?G.tipR.s:mjShanten(mjc(G.H.me.slice(0,13)));tp=(s===0?'텐파이 — 이걸 버리면 한 장만 더 오면 완성이에요':`완성까지 패를 ${s+1}번쯤 더 바꿔야 해요`)+' · 노란 테두리가 버리기 추천'}}else if(G.phase==='bet')tp='걸 칩을 고르고 시작을 누르세요';$('gTip').textContent=tp},
  start(){if(busy)return;refill(who());if(G.bet>coin('me'))G.bet=Math.max(10,Math.floor(coin('me')/10)*10);
   const w=[];for(let t=0;t<34;t++)for(let k=0;k<4;k++)w.push(t);for(let i=w.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[w[i],w[j]]=[w[j],w[i]]}
   G.wall=w;G.H={};G.P={};G.res=null;G.last=null;G.sel=-1;G.order=who();G.order.forEach(id=>{G.H[id]=G.wall.splice(0,13);G.P[id]=[]});G.phase='play';
@@ -315,10 +332,7 @@ const MJ={id:'mahjong',dom:true,
   this.after(w)},
  after(w){const i=G.order.indexOf(w);this.draw();setTimeout(()=>{if(alive()&&G.phase==='play')this.turn(G.order[(i+1)%G.order.length])},w==='me'?250:350)},
  async ai(w){busy=true;await sleep(R(600,1000));if(!alive())return;busy=false;const h=G.H[w];if(mjWin(h))return this.win(w,true);
-  const c=mjc(h),cand=[...new Set(h)];let best=null,bs=99,bu=-1;
-  for(const t of cand){c[t]--;const s=mjShanten(c);let u=0;if(w==='haru'&&s<=bs){for(let x=0;x<34;x++){if(c[x]>=4)continue;c[x]++;if(mjShanten(c)<s)u+=4-c[x]+1;c[x]--}}else u=Math.random()*3+(t>=27?2:0);
-   c[t]++;if(s<bs||(s===bs&&u>bu)){bs=s;bu=u;best=t}}
-  if(w==='navi'&&Math.random()<.15)best=pick(cand);this.discard(w,h.indexOf(best))},
+  let best=mjBest(h,w==='haru').t;if(w==='navi'&&Math.random()<.15)best=pick([...new Set(h)]);this.discard(w,h.indexOf(best))},
  win(w,tsumo,from){const h=tsumo?G.H[w]:G.H[w].concat(G.last.t);G.H[w]=h;const{han,y}=mjYaku(h,tsumo),amt=G.bet*han;let got=0;
   (tsumo?G.order.filter(o=>o!==w):[from]).forEach(o=>{const p=Math.min(coin(o),amt);addCoin(o,-p);got+=p});addCoin(w,got);
   G.res={w,txt:`${tsumo?'쯔모':'론'} · ${y.join(' · ')} · ${han}판 · +${fmtC(got)}`};G.phase='done';G.turn=null;save();score();this.draw();
@@ -330,22 +344,24 @@ function score(){if(cur&&!MOD[cur.id].dom){const r=recOf(cur.id,opp);$('gScore')
 function recTxt(g){if(g.bet)return'칩을 걸고';const r=recOf(g.id,opp);return r.w+r.l+r.d?`${r.w}승 ${r.l}패`+(r.d?` ${r.d}무`:''):'아직 안 해봤어요'}
 function catOn(){$('app').classList.toggle('withcat',opp==='navi'||opp==='trio');requestAnimationFrame(()=>{mPlace();setTimeout(mPlace,380)})}
 function seg(id,list,curV,cb){const O=$(id);O.innerHTML='';list.forEach(([v,l])=>{const b=el('button',curV===v?'on':'',l);b.onclick=()=>cb(v);O.appendChild(b)})}
-function hub(){cur=null;G=null;seq++;busy=false;opp=mode==='trio'?'trio':duoOpp;$('gTitle').textContent='놀이';$('gBack').hidden=true;$('gPlay').hidden=true;$('gHub').hidden=false;score();
+function hub(){cur=null;G=null;seq++;busy=false;opp=mode==='trio'?'trio':duoOpp;$('gTitle').textContent='놀이';$('gBack').hidden=true;$('gHelpB').hidden=true;$('gPlay').hidden=true;$('gHub').hidden=false;score();
  seg('gMode',[['duo','둘이서'],['trio','셋이서']],mode,v=>{mode=v;hub()});$('gOpp').hidden=mode!=='duo';
  if(mode==='duo')seg('gOpp',[['haru','하루랑'],['navi','나비랑']],duoOpp,v=>{duoOpp=v;hub()});
  const C=$('gCards');C.innerHTML='';GAMES.filter(g=>mode==='trio'?g.trio:g.duo).forEach(g=>{const b=el('button','gcard');b.innerHTML=`<svg viewBox="0 0 24 24">${g.icon}</svg>`;b.append(el('b',null,g.name),el('small',null,g.sub),el('span','rec',recTxt(g)));b.onclick=()=>start(g.id);C.appendChild(b)});
  $('gLine').textContent=mode==='trio'?'셋이서 뭐 할까요? …칩은 봐주지 않아요.':opp==='navi'?'나비랑 뭐 하고 놀까요?':'…뭐 하고 싶으세요?';av(mode==='trio'?'haru':opp,$('gAv'));if(opp==='navi'||opp==='trio')mascot('happy');catOn()}
 function start(id){cur=MOD[id];$('gTitle').textContent=GAMES.find(g=>g.id===id).name;$('gBack').hidden=false;$('gHub').hidden=true;$('gPlay').hidden=false;
  $('gBoard').hidden=!!cur.dom;$('gStage').hidden=!cur.dom;$('gLvW').hidden=!!cur.dom;$('gPlay').querySelector('.gbtns').hidden=!!cur.dom;if(!cur.dom){const c=$('gBoard');c.style.height=c.clientWidth*cur.aspect+'px'}
- seg('gLv',cur.dom?[]:[[0,'쉬움'],[1,'보통'],[2,'어려움']],lv,v=>{lv=v;S.gameLv=v;save();start(cur.id)});
+ $('gLvW').hidden=true;
+ const H=$('gHelp');H.innerHTML=HELP[id].map(t=>`<p>${t}</p>`).join('');S.ruleSeen=S.ruleSeen||{};H.hidden=!!S.ruleSeen[id];S.ruleSeen[id]=1;save();$('gHelpB').hidden=false;$('gHelpB').classList.toggle('on',!H.hidden);
+ $('gTip').textContent=id==='chess'?'내 말(흰색)을 누르면 갈 수 있는 칸이 보여요':'';
  fresh();catOn()}
 const INTRO={blackjack:{haru:'제가 딜러예요. 걸 칩을 고르고 딜을 누르세요.',navi:'제가 딜러할게요~ 칩 고르고 딜!'},holdem:{haru:'블라인드 10, 20이에요. …시작할까요?',navi:'포커다! 저 잘해요~'},yacht:{haru:'점수가 제일 높은 사람이 칩을 가져가요. 걸 칩을 고르세요.',navi:'요트 하자! 칩 고르고 시작~'},mahjong:{haru:'울기 없이 쯔모·론만 해요. 판 수 × 건 칩만큼 받아요.',navi:'마작! 저 패 잘 섞어요~'}};
 function fresh(){seq++;busy=false;cur.init();G.seq=seq;G.over=false;score();cur.draw();
  if(cur.dom){const sp=opp==='trio'?'haru':opp;talk(sp,INTRO[cur.id][sp],'base');if(opp==='trio')mascot('happy')}else talk(opp,'start')}
-function open(){if(opening)return;mode=S.gameMode||'duo';duoOpp=S.gameOpp||(pub?'navi':'haru');lv=S.gameLv!=null?S.gameLv:1;rec();$('app').classList.add('gaming');$('game').classList.add('open');hub()}
+function open(){if(opening)return;mode=S.gameMode||'duo';duoOpp=S.gameOpp||(pub?'navi':'haru');lv=1;rec();$('app').classList.add('gaming');$('game').classList.add('open');hub()}
 function close(){seq++;busy=false;S.gameMode=mode;S.gameOpp=duoOpp;save();$('app').classList.remove('gaming','withcat');$('game').classList.remove('open');if(!pub)setMood(idle())}
 const MOD={chess:CH,omok:OM,blackjack:BJ,holdem:HE,yacht:YT,mahjong:MJ};
-$('gBack').onclick=hub;$('gClose').onclick=close;$('gNew').onclick=()=>cur&&fresh();
+$('gBack').onclick=hub;$('gHelpB').onclick=()=>{const H=$('gHelp');H.hidden=!H.hidden;$('gHelpB').classList.toggle('on',!H.hidden)};$('gClose').onclick=close;$('gNew').onclick=()=>cur&&fresh();
 $('gBoard').addEventListener('click',e=>{if(!cur||cur.dom||!G||G.over||busy)return;const r=e.currentTarget.getBoundingClientRect();cur.tap(e.clientX-r.left,e.clientY-r.top,r.width)});
 document.querySelectorAll('nav button[data-g]').forEach(b=>b.onclick=open);
 window.addEventListener('resize',()=>{if(!$('game').classList.contains('open'))return;if(cur&&!cur.dom){const c=$('gBoard');c.style.height=c.clientWidth*cur.aspect+'px';cur.draw()}mPlace()});

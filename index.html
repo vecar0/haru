@@ -101,7 +101,7 @@ nav img{width:40px;height:40px}
 .app.public .lockbtn{display:none}
 /* butterflies */
 .bfy{position:absolute;left:0;top:0;z-index:1;pointer-events:none;will-change:transform,opacity;perspective:160px}
-.bfy.front{z-index:9}.pub .bfy{z-index:5}.pub .bfy{z-index:2;filter:drop-shadow(0 0 7px rgba(225,232,255,.55)) drop-shadow(0 4px 6px rgba(0,0,0,.45))}
+.bfy.front{z-index:9}.pub .bfy{z-index:5}.pub .bfy{z-index:4;filter:drop-shadow(0 0 7px rgba(225,232,255,.55)) drop-shadow(0 4px 6px rgba(0,0,0,.45))}
 .bfy .w{position:absolute;top:0;width:50%;height:100%;background-size:200% 100%;background-repeat:no-repeat;will-change:transform}
 .bfy .wl{left:0;background-position:0 0;transform-origin:100% 50%}
 .bfy .wr{right:0;background-position:100% 0;transform-origin:0 50%}
@@ -214,7 +214,10 @@ details.add[open] summary:before{transform:rotate(45deg)}details.add:not([open])
 .pc.back{background:repeating-linear-gradient(45deg,#2c2a35 0 5px,#211f29 5px 10px);border:1px solid rgba(232,228,240,.3)}
 .pc.slot{background:rgba(242,240,236,.03);box-shadow:none;border:1px dashed rgba(242,240,236,.14)}
 .pboard{display:flex;flex-direction:column;align-items:center;gap:8px;padding:4px 0}.pboard .pcs{justify-content:center;flex-wrap:nowrap;gap:5px}.ppot{font-size:13px;color:var(--mute);letter-spacing:.04em;text-align:center}
-#gStage{gap:10px}.ydice{display:flex;justify-content:center;gap:8px}.ydie{border:0;background:none;padding:3px;border-radius:10px;transition:transform .15s;cursor:pointer}.ydie .die{width:42px;height:42px;border-radius:9px;padding:5px}.ydie .die i{width:7px;height:7px}
+#gStage{gap:10px}.ghelpb{width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);background:rgba(242,240,236,.04);color:var(--paper);font:inherit;font-size:15px;padding:0;cursor:pointer}.ghelpb.on{background:var(--paper);color:var(--ink)}
+.ghelp{width:100%;border-radius:14px;background:rgba(214,236,238,.05);border:1px solid rgba(214,236,238,.18);padding:12px 14px;font-size:13px;line-height:1.7;color:rgba(242,240,236,.9)}.ghelp b{font-weight:500;color:var(--paper)}.ghelp p{margin:0 0 6px}.ghelp p:last-child{margin:0}.ghelp .k{color:rgba(214,236,238,.95)}
+.gtip{width:100%;font-size:12.5px;color:rgba(214,236,238,.9);text-align:center;min-height:18px}.gtip:empty{display:none}
+.mj.tip{box-shadow:0 2px 0 #a9a192,0 0 0 2px rgba(255,224,160,.9),0 3px 6px rgba(0,0,0,.45)}.ytab td.pv.best{background:rgba(255,224,160,.14);color:#ffe7b0}.ydice{display:flex;justify-content:center;gap:8px}.ydie{border:0;background:none;padding:3px;border-radius:10px;transition:transform .15s;cursor:pointer}.ydie .die{width:42px;height:42px;border-radius:9px;padding:5px}.ydie .die i{width:7px;height:7px}
 .ydie.hold{transform:translateY(-5px)}.ydie.hold .die{box-shadow:0 0 0 2px rgba(214,236,238,.9),0 6px 14px rgba(0,0,0,.5)}.ydie:disabled{cursor:default}
 .ytab{width:100%;border-collapse:collapse;font-size:12.5px}.ytab th{padding:2px 0 6px;font-weight:400;color:var(--mute);font-size:11px;text-align:center}.ytab th .gav{width:24px;height:24px;margin:0 auto;display:grid}.ytab th.on .gav{box-shadow:0 0 0 2px rgba(214,236,238,.7)}
 .ytab td{padding:0 4px;height:25px;text-align:center;border-top:1px solid rgba(242,240,236,.06);font-variant-numeric:tabular-nums}.ytab td.yl{text-align:left;color:var(--mute);padding-left:2px;white-space:nowrap}
@@ -231,7 +234,7 @@ details.add[open] summary:before{transform:rotate(45deg)}details.add:not([open])
 <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6f8fb"/><stop offset=".35" stop-color="#d6ecee"/><stop offset=".65" stop-color="#eedcee"/><stop offset="1" stop-color="#dde2f7"/></linearGradient></defs></svg>
 <div class="app" id="app">
  <div class="bg" id="bg"></div><div class="shade"></div>
- <div class="pub" id="pub"><div class="pubbg" id="pubbg"></div><div class="boxw" id="boxw"><img id="boxO" alt=""><img id="boxC" alt=""><button class="lockhit" id="lockhit" aria-label="열기"></button><div class="hint">︿ 위로 밀어 열기</div></div><div class="cat" id="bcat"></div></div><div class="hint hhint">﹀</div><div class="flash" id="flash"></div>
+ <div class="pub" id="pub"><div class="pubbg" id="pubbg"></div><div class="boxw" id="boxw"><img id="boxO" alt=""><img id="boxC" alt=""><button class="lockhit" id="lockhit" aria-label="열기"></button></div><div class="cat" id="bcat"></div></div><div class="hint hhint">﹀</div><div class="flash" id="flash"></div>
  <header><div class="brand">하루<small id="date"></small></div><div class="hr"><div class="clock" id="clock"></div><button class="lockbtn" id="lockbtn" aria-label="함 닫기"><img data-a="u_lock" alt=""></button></div></header>
  <div id="plog"></div><div class="say" id="say"><div class="who">하루</div><p id="line"></p></div>
  <div class="stage" id="stage"><div class="body" id="body"><img id="fA" alt=""><div id="ovs"></div><img id="fP0" class="pz" alt=""><img id="fP1" class="pz" alt=""></div><div class="tap" id="tap"></div></div>
@@ -241,10 +244,10 @@ details.add[open] summary:before{transform:rotate(45deg)}details.add:not([open])
   <nav><button data-s="sTodo"><svg viewBox="0 0 24 24"><rect x="4.5" y="3.5" width="15" height="17" rx="3"/><path d="M8 9.2l1.5 1.5 2.7-2.7M8 15.2l1.5 1.5 2.7-2.7M14.6 9.6h2.4M14.6 15.6h2.4"/></svg>할 일<span class="badge" id="badge" hidden></span></button><button data-s="sRou"><svg viewBox="0 0 24 24"><path d="M18.8 14.6A7.6 7.6 0 0 1 9.4 5.2a7.6 7.6 0 1 0 9.4 9.4z"/><path d="M16.5 4.5v2.2M15.4 5.6h2.2"/></svg>루틴</button><button data-s="sLog"><svg viewBox="0 0 24 24"><path d="M4 5.6c2.6-1 5.4-1 8 .9 2.6-1.9 5.4-1.9 8-.9v13c-2.6-1-5.4-1-8 .9-2.6-1.9-5.4-1.9-8-.9z"/><path d="M12 6.5v13"/></svg>기록</button><button data-g="1"><svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="10" rx="5"/><path d="M8 11v3M6.5 12.5h3"/><circle cx="15.5" cy="11.5" r=".9"/><circle cx="17" cy="13.8" r=".9"/></svg>놀이</button><button data-s="sMoney"><svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="12" rx="2.5"/><path d="M3.5 10.2h17M15 14.6h2.5"/></svg>자산</button><button data-s="sSet"><svg viewBox="0 0 24 24"><path d="M4.5 7.5h9M17.5 7.5h2M4.5 16.5h3M11.5 16.5h8"/><circle cx="15.5" cy="7.5" r="2"/><circle cx="9.5" cy="16.5" r="2"/></svg>설정</button></nav>
  </div>
  <div id="mascot" class="cat"></div><div class="game" id="game">
-  <div class="ghead"><button class="gback" id="gBack" aria-label="뒤로" hidden><svg viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></svg></button><b id="gTitle">놀이</b><span class="gsc" id="gScore"></span><button class="gx" id="gClose" aria-label="닫기"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></button></div>
+  <div class="ghead"><button class="gback" id="gBack" aria-label="뒤로" hidden><svg viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></svg></button><b id="gTitle">놀이</b><span class="gsc" id="gScore"></span><button class="ghelpb" id="gHelpB" aria-label="규칙" hidden>?</button><button class="gx" id="gClose" aria-label="닫기"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></button></div>
   <div class="gtalk"><span class="gav" id="gAv"></span><span class="gline" id="gLine"></span></div>
   <div id="gHub" class="gview"><div class="seg" id="gMode"></div><div class="seg" id="gOpp"></div><div class="gcards" id="gCards"></div></div>
-  <div id="gPlay" class="gview" hidden><canvas id="gBoard"></canvas><div id="gStage" hidden></div>
+  <div id="gPlay" class="gview" hidden><div class="ghelp" id="gHelp" hidden></div><canvas id="gBoard"></canvas><div id="gStage" hidden></div><div class="gtip" id="gTip"></div>
    <div class="gbtns"><div id="gLvW"><div class="seg" id="gLv"></div></div><button class="btn ghost sm" id="gNew">새 게임</button></div></div>
  </div>
  <div class="sheet" id="sTodo"><div class="panel"><div class="grab"></div><div class="shead"><div><h2>할 일</h2><div class="sub" id="todoSub"></div></div><button class="sx" aria-label="닫기"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></button></div>
@@ -492,11 +495,10 @@ function makeCat(box){box.innerHTML='';const im={};const sh=document.createEleme
    body.style.transform=SIDE.has(k)&&c.face<0?'scaleX(-1)':'';if(c.onshow)c.onshow(k);if(ms>0)c.hold=setTimeout(()=>c.show(c.rest||'base'),ms)}};
  (function blink(){if(c.cur==='base'&&!document.hidden){setLid('h');setTimeout(()=>{if(c.cur==='base')setLid('c')},60);setTimeout(()=>{if(c.cur==='base')setLid('h')},170);setTimeout(()=>setLid(''),230)}
   setTimeout(blink,2600+Math.random()*3500)})();
- c.warm=()=>{};
  c.show('base');return c}
 const CATMAP={base:'base',smile:'happy',nod:'happy',pleased:'pleased',surprised:'surprised',think:'think',side:'think',sad:'sad',worry:'sad',stone:'stone',wave:'wave'};
 let mCat=null,bCat=null,catIdle=Date.now();
-function mascot(ex){if(!mCat){mCat=makeCat($('mascot'));mCat.warm(['happy','stone','think','surprised','sad','pleased'])}mCat.show(CATMAP[ex]||'base')}
+function mascot(ex){if(!mCat){mCat=makeCat($('mascot'))}mCat.show(CATMAP[ex]||'base')}
 // 오목할 때 나비는 게임판 위쪽 테두리에 앉는다(판을 가리지 않게)
 function mPlace(){const m=$('mascot'),gm=$('game'),app=$('app');if(!m||!gm)return;const H=app.clientHeight,top=H-gm.offsetHeight;
  const hb=document.querySelector('header')?document.querySelector('header').getBoundingClientRect().bottom-app.getBoundingClientRect().top:80;
@@ -522,10 +524,10 @@ async function wLife(){if(WK.started)return;WK.started=true;WK.wakeAt=0;
    else if(r<.52)await wAct(pick(['happy','pleased']),2200);
    else if(r<.6)await wAct('think',2400)}
   catch(e){}WK.busy=false}}
-function initBoxCat(){bCat=makeCat($('bcat'));bCat.warm(['look','sleep','happy','pleased','think','w1','w2','w3']);bCat.onshow=()=>wPlace();requestAnimationFrame(()=>{const g=wGeo();WK.x=Math.max(g.m,g.bl-g.vw*.55);WK.on=false;wPlace();$('bcat').classList.add('ready')});
+function initBoxCat(){bCat=makeCat($('bcat'));bCat.onshow=()=>wPlace();requestAnimationFrame(()=>{const g=wGeo();WK.x=Math.max(g.m,g.bl-g.vw*.55);WK.on=false;wPlace();$('bcat').classList.add('ready')});
  $('boxC').addEventListener('load',()=>wFloorOrBox());window.addEventListener('load',()=>wFloorOrBox());setInterval(()=>{if(bCat&&!WK.busy&&!WK.air)wPlace()},1500);
  {const hit=document.createElement('div');hit.className='chit';$('bcat').appendChild(hit)}
- $('bcat').querySelector('.chit').addEventListener('click',e=>{e.stopPropagation();catIdle=Date.now();if(WK.busy)return;WK.busy=true;(async()=>{if(bCat.cur!=='base'){bCat.show('base');wPlace();await sleep(150)}await wSeq(['w1','w2','w3'],130);await sleep(550);await wSeq(['w2','w1'],130);bCat.show('base');wPlace();WK.busy=false})()});
+ $('bcat').querySelector('.chit').addEventListener('click',e=>{e.stopPropagation();catIdle=Date.now();if(WK.busy)return;WK.busy=true;(async()=>{if(bCat.cur!=='base'){bCat.show('base');wPlace();await sleep(150)}bCat.show('wave');wPlace();await sleep(1200);bCat.show('base');wPlace();WK.busy=false})()});
  window.addEventListener('resize',()=>wFloorOrBox());setTimeout(wLife,1500)}
 ['touchstart','click','keydown'].forEach(ev=>document.addEventListener(ev,()=>{catIdle=Date.now();if(bCat&&bCat.cur==='sleep'&&!WK.busy){bCat.show('base');wPlace()}},{passive:true}));
 setTimeout(initBoxCat,0);
