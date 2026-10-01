@@ -126,7 +126,7 @@ nav button{gap:6px;padding:4px 10px}
 .wd.today{border-color:rgba(232,228,240,.45)}
 .wh{display:flex;align-items:center;gap:8px}.wh b{font-weight:500;font-size:14px;flex:1}.wh .al{font-size:13px;color:#dfe6f4;font-family:"Noto Serif KR",serif}.wh .al.low{color:#e6b3bd}
 .we{font-size:13px;color:var(--paper);margin:5px 0 0;display:flex;gap:8px}.we span{color:var(--mute);flex:none}
-.wadd{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.wadd input{flex:1 1 30%;height:38px;border-radius:10px;border:1px solid var(--line);background:rgba(242,240,236,.05);color:var(--paper);padding:0 10px;font:inherit;font-size:14px;min-width:0}
+.wadd{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.wadd input{flex:1 1 30%;height:38px;border-radius:10px;border:1px solid var(--line);background:rgba(242,240,236,.05);color:var(--paper);padding:0 10px;font:inherit;font-size:16px;min-width:0}
 .wadd .btn{height:38px;padding:0 12px;font-size:13px}.wplus{background:none;border:1px solid var(--line);color:var(--paper);border-radius:12px;height:26px;padding:0 10px;font:inherit;font-size:12px}
 .omokbtn{width:30px;height:30px;border:0;background:none;padding:0;cursor:pointer;opacity:.9}.omokbtn svg{width:100%;height:100%}
 .game{position:absolute;left:0;right:0;bottom:0;z-index:18;background:rgba(10,10,12,.96);border-top:1px solid var(--line);border-radius:20px 20px 0 0;padding:12px 14px calc(14px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;align-items:center;gap:10px}
@@ -139,7 +139,7 @@ nav button{gap:6px;padding:4px 10px}
 #mascot svg{width:100%;height:100%;overflow:visible}#mascot .wg{transform-box:fill-box;animation:mflap .5s ease-in-out infinite alternate}#mascot .wl{transform-origin:100% 50%}#mascot .wr{transform-origin:0% 50%}
 @keyframes mflap{to{transform:scaleX(.72)}}@keyframes mbob{50%{transform:translateY(-6px)}}
 #mascot .pop{animation:mpop .35s ease-out}@keyframes mpop{0%{transform:scale(.9)}60%{transform:scale(1.06)}100%{transform:none}}
-.cat{position:absolute;aspect-ratio:710/574}.cat .ccv{position:absolute;inset:0;width:100%;height:100%;transform-origin:50% 96%;animation:cbr 3.4s ease-in-out infinite}@keyframes cbr{50%{transform:scale(1.006,1.014)}}#mascot .csh{display:none}.cat .csh{position:absolute;left:24%;width:52%;top:90%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.82),rgba(0,0,0,.45) 55%,rgba(0,0,0,.12) 80%,transparent);transition:opacity .2s,transform .2s;pointer-events:none}
+.cat{position:absolute;aspect-ratio:710/574}.cat .ccv{position:absolute;inset:0;width:100%;height:100%;}#mascot .csh{display:none}.cat .csh{position:absolute;left:24%;width:52%;top:90%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.82),rgba(0,0,0,.45) 55%,rgba(0,0,0,.12) 80%,transparent);transition:opacity .2s,transform .2s;pointer-events:none}
 .cbody{position:absolute;inset:0}.cat img{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;-webkit-user-drag:none}.lids{position:absolute;inset:0;pointer-events:none}.lids svg{width:100%;height:100%}.lids .lh,.lids .lc{display:none}.lids[data-s=h] .lh,.lids[data-s=c] .lc{display:inline}.cat img.on{opacity:1}
 #bcat{left:0;top:0;width:min(42vw,190px);z-index:3;opacity:0;transition:opacity .3s;pointer-events:none}.chit{position:absolute;left:34%;width:32%;top:28%;height:66%;pointer-events:auto;cursor:pointer}#bcat.ready.drawn{opacity:1}.app.gaming #bcat{opacity:0;pointer-events:none}
 #mascot{width:300px!important;height:auto!important;aspect-ratio:710/574;margin-left:-150px!important;animation:none!important}
@@ -149,7 +149,7 @@ nav button{gap:6px;padding:4px 10px}
 .app.public #plog{display:block}.app.public .say{display:none}
 .pl{margin:3px 0;white-space:pre-wrap}.pl.u{text-align:right;color:var(--mute)}
 .hint{position:absolute;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.2em;color:rgba(242,240,236,.45);pointer-events:none;z-index:4}
-.pub .hint{top:calc(100% + 26px);left:0;right:-80%}
+.pub .hint{top:calc(100% + 8px);left:50%;right:auto;transform:translateX(-50%);white-space:nowrap}
 .hhint{display:none;top:64px}.app:not(.public) .hhint{display:block}
 .lockbtn{display:none!important}
 @media (prefers-reduced-motion:reduce){.body,.fly img,.spark{animation:none}}
@@ -173,7 +173,7 @@ nav button{gap:6px;padding:4px 10px}
   <div class="form"><button class="btn ghost" id="tClean">완료한 항목 정리</button></div></div></div>
  <div class="sheet" id="sRou"><div class="panel"><div class="grab"></div><h2><img data-a="b_bf4" alt="">루틴</h2><div class="sub">매일 정해진 시간에 하루가 챙겨요</div>
   <div class="sec">반복 알림</div><div class="sub" style="text-align:left;margin:-2px 0 8px">정한 간격마다 하루가 알려줘요</div><div class="form"><input class="f h" id="repText" placeholder="예: 스트레칭, 눈 쉬기, 자세 바로잡기"><button class="btn" id="repSave">저장</button></div><div class="tog" id="water"></div><div class="form"><input class="f h" id="wFrom" type="time" value="09:00"><input class="f h" id="wTo" type="time" value="22:00"><button class="btn ghost" id="wSave">시간대 저장</button></div>
-  <div class="sec">매주 고정 일정</div><div id="fixList"></div><div class="tog" id="fDays"></div><div class="form"><input class="f h" id="fText" placeholder="예: 영어 학원"><input class="f h" id="fStart" type="time" value="18:00"><input class="f h" id="fEnd" type="time" value="20:00"><input class="f h" id="fCost" type="number" inputmode="numeric" placeholder="예상 비용 (선택)"></div><div class="tog" id="fNoti"></div><div class="form"><button class="btn" id="fAdd" style="flex:1">고정 일정 추가</button></div><div class="sec">반복 알림</div><div id="rous"></div>
+  <div class="sec">매주 고정 일정</div><div id="fixList"></div><div class="tog" id="fDays"></div><div class="form"><input class="f h" id="fText" placeholder="예: 영어 학원"><input class="f h" id="fStart" type="time" value="18:00"><input class="f h" id="fEnd" type="time" value="20:00"><input class="f h" id="fCost" type="number" inputmode="numeric" placeholder="예상 비용 (선택)"></div><div class="tog" id="fNoti"></div><div class="form"><button class="btn" id="fAdd" style="flex:1">고정 일정 추가</button></div><div class="sec">정해진 시간 알림</div><div id="rous"></div>
   <div class="tog" id="rDays"></div><div class="form"><input class="f h" id="rText" placeholder="예: 약 먹기, 운동"><input class="f h" id="rTime" type="time" value="09:00"><button class="btn" id="rAdd">추가</button></div></div></div>
  <div class="sheet" id="sLog"><div class="panel"><div class="grab"></div><h2><img data-a="b_bf2" alt="">기록</h2><div class="sub">최근 대화와 하루가 기억하는 것</div>
   <div class="sec">기억</div><div id="mem"></div><div class="form"><input class="f" id="mText" placeholder="직접 알려주기 (예: 커피는 아이스 아메리카노)"><button class="btn" id="mAdd">기억시키기</button></div>
@@ -369,13 +369,25 @@ setPub(true);
 // ---------- cat mascot 나비 (frames + eyelid blink + walking) ----------
 const KF=['base','half','closed','happy','surprised','think','sad','pleased','wave','stone','look','sleep','walk1','walk2','walk3','walk4','crouch','leap','land','sitside','stretch','yawn','groom','reach','j1','j2','j3','j4','j5','j6','j7','j8','w1','w2','w3','w4','t1','t2','t3','t4','h1','h2','h3','h4','s1','s2','s3','s4','wk1','wk2','wk3','wk4','wk5','wk6','wk7','wk8','sd1','sd2','sd3','sd4'];
 const SIDE=new Set(['walk1','walk2','walk3','walk4','crouch','leap','land','sitside','stretch','reach','j1','j2','j3','j4','j5','j6','j7','j8','s1','s2','s3','s4','wk1','wk2','wk3','wk4','wk5','wk6','wk7','wk8','sd1','sd2']);
+// 고양이 그림을 배경 사진에 맞춘다: 갈색 기운 빼기(꼬리 연보라는 그대로), 왼쪽 위 창문 빛, 털 가장자리 살짝 부드럽게
+function catGrade(img,x0,y0,w,h,FW,FH){try{w=Math.round(w);h=Math.round(h);const o=document.createElement('canvas');o.width=w;o.height=h;const x=o.getContext('2d',{willReadFrequently:true});x.drawImage(img,0,0,w,h);
+ const id=x.getImageData(0,0,w,h),d=id.data,n=w*h,f=new Float32Array(n*4);
+ for(let p=0;p<n;p++){const j=p*4,a=d[j+3]/255;let r=d[j],g=d[j+1],b=d[j+2];
+  const wm=Math.min(1,Math.max(0,(r-b)/12))*.85*Math.min(1,Math.max(0,1-(b-g)/10)),m=(r+g+b)/3;r+=(m-r)*wm;g+=(m-g)*wm;b+=(m-b)*wm;
+  const L=1+.3*(1-((x0+p%w)/FW*.6+(y0+(p/w|0))/FH));f[j]=r*L*a;f[j+1]=g*L*a;f[j+2]=b*L*a;f[j+3]=a}
+ const t=new Float32Array(n*4);const pass=(src,dst,dx,dy)=>{for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){const p=(yy*w+xx)*4,xa=Math.max(0,xx-dx),xb=Math.min(w-1,xx+dx),ya=Math.max(0,yy-dy),yb=Math.min(h-1,yy+dy),pa=(ya*w+xa)*4,pb=(yb*w+xb)*4;
+  for(let ch=0;ch<4;ch++)dst[p+ch]=(src[pa+ch]+2*src[p+ch]+src[pb+ch])/4}};
+ pass(f,t,1,0);pass(t,f,0,1);
+ for(let p=0;p<n;p++){const j=p*4,a=f[j+3];d[j+3]=Math.round(a*255);if(a>0){d[j]=Math.min(255,f[j]/a);d[j+1]=Math.min(255,f[j+1]/a);d[j+2]=Math.min(255,f[j+2]/a)}}
+ x.putImageData(id,0,0);return o}catch(e){return img}}
 function makeCat(box){box.innerHTML='';const im={};const sh=document.createElement('div');sh.className='csh';box.appendChild(sh);const body=document.createElement('div');body.className='cbody';box.appendChild(body);
  const cv=document.createElement('canvas');cv.className='ccv';cv.width=A.k_dim[0]*2;cv.height=A.k_dim[1]*2;body.appendChild(cv);const ctx=cv.getContext('2d');let painted=false;
  const bl=new Image();if(A.k_blink){bl.src=A.k_blink;bl.decode&&bl.decode().catch(()=>{})}
  KF.forEach(k=>{if(!A['k_'+k])return;const i=new Image();i.src=A['k_'+k];i.decode&&i.decode().catch(()=>{});im[k]=i});
- const paint=()=>{if(!ctx)return;const i=im[c.cur]||im.base;if(!i||!i.complete||!i.naturalWidth){if(i){i.addEventListener('load',paint,{once:true});i.decode&&i.decode().then(paint).catch(()=>{})}return}
-  const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(i,0,0,W,H);
-  if(lid&&c.cur==='base'&&bl.complete&&bl.naturalWidth){const p=A.k_blinkp;ctx.globalAlpha=lid==='h'?.6:1;ctx.drawImage(bl,p[0]*W,p[1]*H,p[2]*W,p[3]*H);ctx.globalAlpha=1}if(!painted){painted=true;box.classList.add('drawn')}
+ const pr={};const prep=(k,i,x0,y0,w,h)=>{if(pr[k])return pr[k];pr[k]=catGrade(i,x0,y0,w,h,cv.width,cv.height);return pr[k]};
+ const paint=()=>{if(!ctx)return;const k=im[c.cur]?c.cur:'base',i=im[k];if(!i||!i.complete||!i.naturalWidth){if(i){i.addEventListener('load',paint,{once:true});i.decode&&i.decode().then(paint).catch(()=>{})}return}
+  const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(prep(k,i,0,0,W,H),0,0,W,H);
+  if(lid&&c.cur==='base'&&bl.complete&&bl.naturalWidth){const p=A.k_blinkp,bx=p[0]*W,by=p[1]*H,bw=p[2]*W,bh=p[3]*H;ctx.globalAlpha=lid==='h'?.6:1;ctx.drawImage(prep('_blink',bl,bx,by,bw,bh),bx,by,bw,bh);ctx.globalAlpha=1}if(!painted){painted=true;box.classList.add('drawn')}
   // 방 조명에 맞춰 위는 살짝 밝게, 아래는 어둡게 (창문 빛 느낌)
   ctx.globalCompositeOperation='source-atop';const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(.6,'rgba(0,0,0,.02)');g.addColorStop(1,'rgba(0,0,0,.14)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);ctx.globalCompositeOperation='source-over'};
   let lid='';const setLid=s=>{s=s||'';if(s!==lid){lid=s;if(c.cur==='base')paint()}};
@@ -383,14 +395,12 @@ function makeCat(box){box.innerHTML='';const im={};const sh=document.createEleme
    body.style.transform=SIDE.has(k)&&c.face<0?'scaleX(-1)':'';if(c.onshow)c.onshow(k);if(ms>0)c.hold=setTimeout(()=>c.show(c.rest||'base'),ms)}};
  (function blink(){if(c.cur==='base'&&!document.hidden){setLid('h');setTimeout(()=>{if(c.cur==='base')setLid('c')},60);setTimeout(()=>{if(c.cur==='base')setLid('h')},170);setTimeout(()=>setLid(''),230)}
   setTimeout(blink,2600+Math.random()*3500)})();
+ // 자주 쓰는 자세는 미리 색을 입혀둔다(처음 바뀔 때 끊기지 않게)
+ c.warm=list=>{let i=0;const nx=()=>{while(i<list.length){const k=list[i],m=im[k];if(!m||(m.complete&&!m.naturalWidth)){i++;continue}if(!m.complete){setTimeout(nx,400);return}i++;prep(k,m,0,0,cv.width,cv.height);setTimeout(nx,150);return}};setTimeout(nx,600)};
  c.show('base');return c}
 const CATMAP={base:'base',smile:'happy',nod:'happy',pleased:'pleased',surprised:'surprised',think:'think',side:'think',sad:'sad',worry:'sad',stone:'stone',wave:'wave'};
 let mCat=null,bCat=null,catIdle=Date.now();
-function mascot(ex){if(!mCat)mCat=makeCat($('mascot'));const k=CATMAP[ex]||'base';if(k===mCat.cur||!mCat.im[k])return mCat.show(k);
- // 표정 그림마다 몸 모양이 달라서, 살짝 웅크렸다 튀어오르는 사이에 바꾼다(즉시 교체보다 자연스럽게)
- const my=mascot.seq=(mascot.seq||0)+1,b=mCat.body;if(!b.animate||matchMedia('(prefers-reduced-motion: reduce)').matches)return mCat.show(k);
- b.animate([{transform:'scale(1,1)'},{transform:'scale(1.05,.9)',offset:.35},{transform:'scale(.97,1.05)',offset:.65},{transform:'scale(1,1)'}],{duration:340,easing:'ease-out'});
- setTimeout(()=>{if(my===mascot.seq)mCat.show(k)},115)}
+function mascot(ex){if(!mCat){mCat=makeCat($('mascot'));mCat.warm(['happy','stone','think','surprised','sad','pleased'])}mCat.show(CATMAP[ex]||'base')}
 // 오목할 때 나비는 게임판 위쪽 테두리에 앉는다(판을 가리지 않게)
 function mPlace(){const m=$('mascot'),gm=$('game'),app=$('app');if(!m||!gm)return;const H=app.clientHeight,top=H-gm.offsetHeight;
  const hb=document.querySelector('header')?document.querySelector('header').getBoundingClientRect().bottom-app.getBoundingClientRect().top:80;
@@ -404,28 +414,19 @@ function wPlace(){if(!bCat)return;const g=wGeo(),fb=A.k_fbase||.96;if(!WK.air)WK
  const base=WK.on?g.lidY:g.floor,up=Math.max(0,base-WK.y);if(bCat.sh){bCat.sh.style.opacity=Math.max(0,1-up/(g.ch*.5));bCat.sh.style.transform=`translateY(${up/g.ch*100/0.09}%) scale(${Math.max(.5,1-up/(g.ch*.8))})`}}
 function wFloorOrBox(){const g=wGeo();if(WK.on){WK.x=Math.min(Math.max(WK.x,g.bl+g.bw*.22),g.br-g.bw*.22);WK.y=g.lidY}else WK.y=g.floor;wPlace()}
 const wOK=()=>pub&&!opening&&!document.hidden&&!$('app').classList.contains('gaming');
-async function wWalk(tx){const g=wGeo();tx=Math.min(Math.max(tx,g.m),g.W-g.m);if(Math.abs(tx-WK.x)<g.vw*.3)return;bCat.face=tx>=WK.x?1:-1;
- if(!bCat.cur.startsWith('wk')){await wSeq(['sd4','sd3','sd2','sd1'],110);if(!wOK())return}
- const top=Math.max(34,g.vw*.36),x0=WK.x,dist=Math.abs(tx-x0),stride=g.vw*.075;let f=0,last=performance.now(),v=0,moved=0;
- await new Promise(res=>{const step=now=>{const dt=Math.min(.05,(now-last)/1000);last=now;if(!wOK()){res();return}const d=tx-WK.x,ad=Math.abs(d);if(ad<1.5){res();return}
-  const want=ad<g.vw*.35?Math.max(top*.35,top*ad/(g.vw*.35)):top;v+=(want-v)*Math.min(1,dt*5);const mv=Math.min(ad,v*dt);WK.x+=Math.sign(d)*mv;moved+=mv;
-  if(moved>stride){moved-=stride;f=(f+1)%8}bCat.show('wk'+(f+1));wPlace();requestAnimationFrame(step)};requestAnimationFrame(step)})}
-async function wJump(tx,ty,toBox){{const g0=wGeo();tx=Math.min(Math.max(tx,g0.m),g0.W-g0.m)}bCat.face=tx>=WK.x?1:-1;bCat.show('j1');wPlace();await sleep(320);if(!wOK())return;WK.air=true;const x0=WK.x,y0=WK.y,top=Math.min(y0,ty)-wGeo().ch*.45,T=620,st=performance.now();
- await new Promise(res=>{const step=now=>{if(!wOK()){WK.air=false;res();return}const p=Math.min(1,(now-st)/T);bCat.show(p<.15?'j2':p<.35?'j3':p<.55?'j4':p<.78?'j5':'j6');WK.x=x0+(tx-x0)*p;WK.y=(1-p)*(1-p)*y0+2*(1-p)*p*top+p*p*ty;wPlace();if(p<1)requestAnimationFrame(step);else res()};requestAnimationFrame(step)});
- WK.on=toBox;WK.air=false;WK.y=ty;bCat.show('j7');wPlace();await sleep(150);bCat.show('j8');wPlace();await sleep(200);await wSit()}
 async function wSeq(list,ms){for(const k of list){if(!wOK())return;bCat.show(k);wPlace();await sleep(ms)}}
-async function wSit(){await wSeq(['sd1','sd2','sd3','sd4'],140);if(wOK()){bCat.show('base');wPlace()}}
 async function wAct(k,ms){bCat.show(k);wPlace();await sleep(ms);if(wOK()){bCat.show('base');wPlace()}}
+// 고양이는 제자리에 가만히 앉아 있고 자세만 바뀐다(걷기·점프 없음)
 async function wLife(){if(WK.started)return;WK.started=true;WK.wakeAt=0;
- for(;;){await sleep(6000+Math.random()*8000);if(!wOK()||WK.busy)continue;const idle=Date.now()-catIdle;
+ for(;;){await sleep(7000+Math.random()*8000);if(!wOK()||WK.busy)continue;const idle=Date.now()-catIdle;
   if(bCat.cur==='sleep'){if(idle<45000&&Date.now()>WK.wakeAt){bCat.show('base');wPlace()}continue}
-  WK.busy=true;const g=wGeo(),r=Math.random();
-  try{if(idle>45000||r<.18){bCat.show('sleep');wPlace();WK.wakeAt=Date.now()+20000+Math.random()*25000}
-   else if(WK.on){if(r<.65){const tx=(g.W-g.br>g.cw*.75&&Math.random()<.5)?g.br+g.cw*.38:g.bl-g.cw*.38;await wJump(tx,g.floor,false)}}
-   else if(r<.4){const lx=g.bl+g.bw*(.3+Math.random()*.4);await wWalk(g.bl-g.cw*.3);if(wOK())await wJump(lx,g.lidY,true)}
-   else if(r<.8){let tx=g.m+Math.random()*(g.W-2*g.m);if(Math.abs(tx-WK.x)<g.vw*.6)tx=WK.x+(WK.x>g.W/2?-1:1)*g.vw*(.8+Math.random());await wWalk(tx);if(wOK())await wSit()}}
+  WK.busy=true;const r=Math.random();
+  try{if(idle>45000||r<.12){bCat.show('sleep');wPlace();WK.wakeAt=Date.now()+20000+Math.random()*25000}
+   else if(r<.4)await wAct('look',2600+Math.random()*1800);
+   else if(r<.52)await wAct(pick(['happy','pleased']),2200);
+   else if(r<.6)await wAct('think',2400)}
   catch(e){}WK.busy=false}}
-function initBoxCat(){bCat=makeCat($('bcat'));bCat.onshow=()=>wPlace();requestAnimationFrame(()=>{const g=wGeo();WK.x=Math.max(g.m,g.bl-g.vw*.55);WK.on=false;wPlace();$('bcat').classList.add('ready')});
+function initBoxCat(){bCat=makeCat($('bcat'));bCat.warm(['look','sleep','happy','pleased','think','w1','w2','w3']);bCat.onshow=()=>wPlace();requestAnimationFrame(()=>{const g=wGeo();WK.x=Math.max(g.m,g.bl-g.vw*.55);WK.on=false;wPlace();$('bcat').classList.add('ready')});
  $('boxC').addEventListener('load',()=>wFloorOrBox());window.addEventListener('load',()=>wFloorOrBox());setInterval(()=>{if(bCat&&!WK.busy&&!WK.air)wPlace()},1500);
  {const hit=document.createElement('div');hit.className='chit';$('bcat').appendChild(hit)}
  $('bcat').querySelector('.chit').addEventListener('click',e=>{e.stopPropagation();catIdle=Date.now();if(WK.busy)return;WK.busy=true;(async()=>{if(bCat.cur!=='base'){bCat.show('base');wPlace();await sleep(150)}await wSeq(['w1','w2','w3'],130);await sleep(550);await wSeq(['w2','w1'],130);bCat.show('base');wPlace();WK.busy=false})()});
@@ -473,6 +474,7 @@ async function gTap(e){if(!G||G.over||gBusy)return;const c=$('gBoard'),r=c.getBo
  gBusy=true;const threat=gThreat(1);gLine(threat?gS('threat'):gS('think'),threat?'surprised':(pub?'think':null));if(!threat&&!pub)fade('side');
  if(pub)mascot('stone');await sleep(R(450,900));const[ax,ay]=gAI();const hw=gPlace(ax,ay,2);gDraw();gBusy=false;
  if(hw){S.omok.l++;save();gScore();gLine(gS('awin'),'smile');return}
+ if(G.moves>=GN*GN){G.over=true;gLine(gS('draw'),'nod');return}
  if(gThreat(2))gLine(gS('attack'),'pleased');else{if(!pub)fade(mood);else mascot('base');if(Math.random()<.3)gLine(gS('idle'))}}
 function gOpen(){if(opening)return;if(pub){mascot('base');mPlace()}$('app').classList.add('gaming');$('game').classList.add('open');gLvR();requestAnimationFrame(()=>{if(!G||G.over)gNew();else{gDraw();gScore()}})}
 function gClose(){$('app').classList.remove('gaming');$('game').classList.remove('open');if(!pub)setMood(idle())}
@@ -497,7 +499,9 @@ const onDay=(r,dt)=>!r.days||!r.days.length||r.days.includes(dt.getDay());
 const won=n=>(Math.round(n)||0).toLocaleString('ko-KR')+'원';
 let mT='out',mC='식비';const CATS=['식비','교통','쇼핑','생활','기타'];
 function mInit(){if(!S.money)S.money={allow:0,pay:1,goals:[],tx:[]}}
-function mPeriod(){mInit();const pay=Math.min(Math.max(+S.money.pay||1,1),28),now=new Date();let s=new Date(now.getFullYear(),now.getMonth(),pay);if(s>now)s.setMonth(s.getMonth()-1);const e=new Date(s);e.setMonth(e.getMonth()+1);return{s,e}}
+function mPeriod(){mInit();const pay=Math.min(Math.max(+S.money.pay||1,1),31),now=new Date();
+ // 받는 날이 그 달에 없으면(예: 31일인데 30일까지인 달) 그 달 마지막 날로
+ const at=(y,mo)=>new Date(y,mo,Math.min(pay,new Date(y,mo+1,0).getDate()));let s=at(now.getFullYear(),now.getMonth());if(s>now)s=at(now.getFullYear(),now.getMonth()-1);const e=at(s.getFullYear(),s.getMonth()+1);return{s,e}}
 function mStats(){const{s,e}=mPeriod();const tx=S.money.tx.filter(t=>{const d=new Date(t.date);return d>=s&&d<e});
  const out=tx.filter(t=>t.type==='out').reduce((a,t)=>a+t.amount,0),inc=tx.filter(t=>t.type==='in').reduce((a,t)=>a+t.amount,0),budget=(+S.money.allow||0)+inc,left=budget-out;
  const daysLeft=Math.max(1,Math.ceil((e-new Date())/86400000));return{s,e,tx,out,inc,budget,left,daily:left/daysLeft,daysLeft}}
@@ -540,7 +544,7 @@ function renderMoney(){mInit();const m=mStats(),e1=new Date(m.e-86400000);
  {const bp=budgetPlan(),D=$('mDay');D.innerHTML='';const td=bp.today;const c=el('div','mc'+(td.allow-bp.spentToday<0?' neg':''));
   c.append(el('small',null,'오늘 쓸 수 있는 돈'),el('b',null,won(td.allow)),el('small',null,`오늘 쓴 돈 ${won(bp.spentToday)} · 남음 ${won(td.allow-bp.spentToday)}`+(td.reason?` · ${td.reason}`:'')),el('small',null,bp.short?`⚠ 일정 비용을 다 챙기기엔 남은 돈이 부족해서 비율대로 줄였어요.`:`이번 기간 저축 가능 ${won(bp.save)}`+(bp.capSet?` · 비상금 한도 ${won(bp.cap)}`:` · 아래에서 비상금 한도를 정해주세요`)));D.appendChild(c);
   if(document.activeElement!==$('mCap'))$('mCap').value=S.money.cap||'';c.style.cursor='pointer';c.onclick=()=>{$('mCap').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>$('mCap').focus(),350)};
-  {const Q=$('mCapQ');Q.innerHTML='';[5000,10000,15000,20000,30000].forEach(v=>{const b=el('button',(+S.money.cap||0)===v?'on':'',(v/10000>=1?v/10000+'만':v/1000+'천'));b.onclick=()=>{$('mCap').value=v;$('mCapSave').click()};Q.appendChild(b)})}
+  {const Q=$('mCapQ');Q.innerHTML='';[5000,10000,15000,20000,30000].forEach(v=>{const b=el('button',(+S.money.cap||0)===v?'on':'',v.toLocaleString('ko-KR'));b.onclick=()=>{$('mCap').value=v;$('mCapSave').click()};Q.appendChild(b)})}
   const ls=el('div','');ls.style.cssText='display:flex;gap:6px;overflow-x:auto;margin-top:8px;padding-bottom:4px';bp.rows.slice(0,7).forEach((r,i)=>{const x=el('div','mc');x.style.cssText='flex:none;min-width:74px;padding:8px 10px';
    x.append(el('small',null,i===0?'오늘':`${r.d.getMonth()+1}/${r.d.getDate()} ${'일월화수목금토'[r.d.getDay()]}`),el('b',null,r.allow.toLocaleString('ko-KR')+(r.spend?' ·':'')));x.lastChild.style.fontSize='14px';ls.appendChild(x)});D.appendChild(ls);
   $('dpNote').textContent=S.dayPush?`매일 ${S.dayPush}에 그날 쓸 수 있는 돈을 알려드려요.`:'꺼져 있어요.';if(S.dayPush)$('dpT').value=S.dayPush}
@@ -640,7 +644,7 @@ function check(){const now=new Date(),t=now.getTime();tick();
  for(const e of fixedOn(now)){if(!e.noti)continue;const d=new Date(e.due)-t,k='fx'+e.id;if(!S.fired[k]&&d<=e.noti*60000&&d>-5*60000){S.fired[k]=1;save();say(`${nm()} '${e.text}' 곧 시작해요.`.trim(),'surprised',6000);return}}
  for(const x of S.todos){if(x.done||!x.due)continue;const d=new Date(x.due)-t;const k=x.id+'_10';
   if(!S.fired[k]&&d<=10*60000&&d>-5*60000){S.fired[k]=1;save();say(`${nm()} '${x.text}' ${d>60000?Math.round(d/60000)+'분 남았어요.':'시간이에요.'}`.trim(),'surprised',6000);return}}}
-setInterval(check,15000);
+setInterval(check,15000);(function clk(){tick();setTimeout(clk,60000-Date.now()%60000+50)})();
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)check();else{S.seen=Date.now();save()}});
 // ---------- chat ----------
 let busy=false;
@@ -780,7 +784,10 @@ function greet(){const h=new Date().getHours(),n=nm(),open=S.todos.filter(t=>!t.
  if(late.length)g+=`\n지난 할 일이 ${late.length}개 있어요.`;else if(open.length)g+=`\n남은 할 일은 ${open.length}개예요.`;else if(h>=5)g+='\n필요한 거 있으면 말씀하세요.';
  say(g.trim(),late.length?'worry':h<5?'sleepy':'smile',3000)}
 (async()=>{try{const l=localStorage.getItem('haru2');if(l)Object.assign(S,JSON.parse(l))}catch(e){}
- prevSeen=S.seen||0;S.seen=Date.now();if(!S.repV){S.repV=1;if(!S.repText)S.water=0;if(Array.isArray(S.chips))S.chips=S.chips.filter(c=>!/^물\s*마셨/.test(c))}save();
+ prevSeen=S.seen||0;S.seen=Date.now();
+ // 지난 알림 기록 정리(계속 쌓이지 않게): 오늘·어제 것과 아직 안 끝난 할 일 것만 남김
+ {const F=S.fired||{},t=new Date(),y=new Date(t-864e5),days=[t,y].map(d=>d.toDateString()),dks=[t,y].map(dk),live=new Set(S.todos.filter(x=>!x.done).map(x=>x.id+'_10')),o={};
+  for(const k in F)if(days.some(d=>k.endsWith(d))||dks.some(d=>k.startsWith('fx')&&k.endsWith(d))||live.has(k))o[k]=F[k];S.fired=o}if(!S.repV){S.repV=1;if(!S.repText)S.water=0;if(Array.isArray(S.chips))S.chips=S.chips.filter(c=>!/^물\s*마셨/.test(c))}save();
  mood=idle();show(mood,true);render();
  
  render();if(!S.name)$('onb').classList.add('show');else greet();
