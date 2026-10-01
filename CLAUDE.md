@@ -5,7 +5,7 @@
 
 ## 배포
 - 앱: https://vecar0.github.io/haru/ — 이 저장소(GitHub Pages). 파일: `index.html`, `sw.js`, `manifest.json`, `icon-180.png`, `icon-512.png`, `assets/`(그림)
-- **배포할 때마다 `sw.js`의 캐시 버전 `haru-vNN`을 1 올린다** (현재 v47). 안 올리면 폰에 예전 버전이 남는다.
+- **배포할 때마다 `sw.js`의 캐시 버전 `haru-vNN`을 1 올린다** (현재 v48). 안 올리면 폰에 예전 버전이 남는다.
 - 사용자는 아이폰 홈 화면에 설치해서 쓴다. 업데이트 확인은 "앱 완전 종료 후 다시 열기". 아이콘을 바꾸면 홈 화면에서 지우고 Safari에서 다시 "홈 화면에 추가"해야 한다.
 - 알림 서버: Cloudflare Worker `haru-push` (https://haru-push.vecar0473.workers.dev), 코드 `worker.js`. KV 바인딩 `HARU`, 크론 `* * * * *` 필수. 엔드포인트 `/vapid` `/sync` `/test` `/status`. 이 저장소에서 자동 배포되지 않으므로 바꾸면 사용자가 Cloudflare 대시보드에 직접 붙여넣어야 한다고 안내한다.
 - AI: Gemini API (키는 앱 설정에 저장, 폰에만 보관). 대화 `gemini-2.5-flash-lite` 스트리밍, 음성 `gemini-2.5-flash-preview-tts`.
@@ -21,7 +21,7 @@
 - 하루 전신 포즈 `p_*`: show(태블릿 보여주기) think read wave tea shy bow pout. 포즈 전용 얼굴 조각 `q_{pose}_{blink|talk}` / 위치 `qb_*` (think·read·wave·tea·pout 눈 깜빡임, show 말하는 입).
   - 포즈 전환은 **페이드 없이 즉시 교체**(겹치면 잔상이 생겨서 바꿈). 생각 포즈는 답이 0.7초 넘게 늦을 때만, 최소 1.2초 유지.
 - 함 모드(시작 화면): `box_c`(닫힌 함), `box_o`(열린 함), `box_opos`, `box_pin`, `box_lock`, `bg_pub`. 함 그림은 좌우 반전된 상태이고 화면 오른쪽에 작게 배치.
-- 고양이 나비 `k_*`: 캔버스 400×324(`k_dim`), 발 바닥선 `k_fbase`=0.97, 눈 깜빡임 조각 `k_blink`/`k_blinkp`. 한 장의 canvas에 그린다(img 여러 장 켜고 끄기는 아이폰에서 깜빡여서 바꿈).
+- 고양이 나비 `k_*`: 캔버스 400×324(`k_dim`), 발 바닥선 `k_fbase`=0.945, 눈 깜빡임 조각 `k_blink`/`k_blinkp`. 한 장의 canvas에 그린다(img 여러 장 켜고 끄기는 아이폰에서 깜빡여서 바꿈).
   - 표정: base half closed happy surprised think sad pleased wave stone look sleep
   - 걷기 wk1-8(4프레임 반복), 앉기 sd1-4, 점프 j1-8, 인사 w1-4
 - UI `u_*`, 나비 `b_bf*`, 반짝이 `b_sp*`, 배경 `bg`.
